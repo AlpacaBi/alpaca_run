@@ -2,21 +2,20 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import { 
   Button, 
   Menu, 
   Submenu, 
-  MenuItem 
+  MenuItem,
+  MenuItemGroup
 } from 'element-ui';
 
 Vue.component(Button.name, Button);
 Vue.component(Menu.name, Menu);
 Vue.component(Submenu.name, Submenu);
 Vue.component(MenuItem.name, MenuItem);
-
-Vue.use(ElementUI);
+Vue.component(MenuItemGroup.name, MenuItemGroup);
 
 Vue.config.productionTip = false;
 

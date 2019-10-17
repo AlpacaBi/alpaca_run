@@ -98,7 +98,6 @@ body{
   color: white;
   .avator{
     text-align: center;
-    height: 40vh;
     img{
       margin-top: 1vh;
       width: 20vh;

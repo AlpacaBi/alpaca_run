@@ -66,12 +66,15 @@
 
     <div class="right-content"><router-view/></div>
 
-    <div class="ai" v-show="aiShow">
-      <div class="title">
-        Alpaca AI
+    <transition enter-active-class="animated slideInRight" leave-active-class="animated slideOutRight">
+      <div class="ai" v-show="aiShow">
+        <div class="title">
+          Alpaca AI
+        </div>
       </div>
+    </transition>
 
-    </div>
+    
     
   </div>
 </template>
@@ -151,7 +154,7 @@ body{
 }
 
 .ai{
-  position: absolute;
+  position: fixed;
   width: 450px;
   top: 0;
   right: 0;
@@ -172,6 +175,7 @@ body{
 
 </style>
 <script>
+  import animate from 'animate.css'
   /*import { Component, Prop, Vue } from 'vue-property-decorator';
   @Component
   export default class APP extends Vue {
@@ -180,7 +184,13 @@ body{
 
   }*/
   export default {
-  
+
+    data(){
+      return{
+        aiShow: false
+      }
+    },
+
     methods: {
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
@@ -189,8 +199,8 @@ body{
         console.log(key, keyPath);
       },
       aiShowChange(){
-        console.log(this.data)
-        this.data.aiShow=!this.data.aiShow
+        console.log(this.aiShow)
+        this.aiShow=!this.aiShow
       }
     }
   }

@@ -3,17 +3,15 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import 'element-ui/lib/theme-chalk/index.css';
-import { 
-  Button, 
-  Menu, 
-  Submenu, 
+import {
+  Button,
+  Menu,
   MenuItem,
-  MenuItemGroup
+  MenuItemGroup,
 } from 'element-ui';
 
 Vue.component(Button.name, Button);
 Vue.component(Menu.name, Menu);
-Vue.component(Submenu.name, Submenu);
 Vue.component(MenuItem.name, MenuItem);
 Vue.component(MenuItemGroup.name, MenuItemGroup);
 

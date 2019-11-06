@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts">
-import { Component,  Vue } from 'vue-property-decorator';
+import { Component,  Vue , Emit} from 'vue-property-decorator';
 
 @Component
 export default class LeftMenu extends Vue {
@@ -74,9 +74,9 @@ export default class LeftMenu extends Vue {
     private handleClose(key: any, keyPath: any) {
       console.log(key, keyPath);
     }
-    private aiShowChange() {
-        this.$emit('emitAiShow');
-    }
+
+    @Emit('emitAiShow')
+    private aiShowChange() {/**/}
 }
 </script>
 
@@ -97,6 +97,7 @@ export default class LeftMenu extends Vue {
       margin-top: 1vh;
       width: 20vh;
       border-radius:100%;
+      cursor: pointer;
     }
     .name{
       font-size: 4vh;

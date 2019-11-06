@@ -4,16 +4,23 @@
         <div class="title">
           Alpaca AI
         </div>
+        <div class="close" @click="closeAlpacaAI">
+          <img src="@/assets/close.svg" alt="">
+        </div>
       </div>
     </transition>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, PropSync } from 'vue-property-decorator';
+import 'animate.css';
 
 @Component
 export default class LeftMenu extends Vue {
-    @Prop() private aiShow!: boolean;
+    @PropSync('syncedAiShow', { type: Boolean, default: false }) public aiShow!: boolean;
+    private closeAlpacaAI() {
+      this.aiShow = false;
+    }
 }
 </script>
 
@@ -36,10 +43,18 @@ export default class LeftMenu extends Vue {
     text-align: left;
     background: #545c64;
     color: white;
-    height: 45px;
+    height: 42px;
     font-size: 25px;
     padding-top: 10px;
     padding-left: 20px;
+  }
+  .close{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    right: 7px;
+    top: 8px;
+    cursor: pointer;
   }
 }
 </style>

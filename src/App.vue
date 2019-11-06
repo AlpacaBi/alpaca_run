@@ -5,7 +5,7 @@
 
     <div class="right-content"><router-view/></div>
 
-    <AlpacaAI :aiShow="aiShow"/>
+    <AlpacaAI :syncedAiShow.sync="aiShow"/>
 
   </div>
 </template>
@@ -23,25 +23,24 @@ body{
 }
 </style>
 <script lang="ts">
-  import animate from 'animate.css'
   import { Component,  Vue } from 'vue-property-decorator';
-  import LeftMenu from '@/components/LeftMenu.vue'
-  import AlpacaAI from '@/components/AlpacaAI.vue'
+  import LeftMenu from '@/components/LeftMenu.vue';
+  import AlpacaAI from '@/components/AlpacaAI.vue';
 
   @Component({
     components: {
       LeftMenu,
-      AlpacaAI
+      AlpacaAI,
     },
   })
   export default class APP extends Vue {
-    private aiShow:boolean = false;
+    private aiShow: boolean = false;
 
     private aiShowChange() {
       this.aiShow = !this.aiShow;
     }
 
-    created() {
+    private created() {
       setTimeout(() => {
         this.aiShow = true;
       }, 2000);

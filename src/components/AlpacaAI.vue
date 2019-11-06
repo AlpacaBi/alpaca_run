@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Component,Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class LeftMenu extends Vue {
@@ -23,7 +23,6 @@ export default class LeftMenu extends Vue {
   display: inline-block;
   margin-left: 300px
 }
-
 .ai{
   position: fixed;
   width: 450px;

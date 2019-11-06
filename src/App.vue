@@ -22,51 +22,29 @@ body{
   color: #2c3e50;
 }
 </style>
-<script>
+<script lang="ts">
   import animate from 'animate.css'
   import { Component,  Vue } from 'vue-property-decorator';
   import LeftMenu from '@/components/LeftMenu.vue'
   import AlpacaAI from '@/components/AlpacaAI.vue'
-  /*@Component
-  export default class APP extends Vue {
-    isCollapse: boolean = true;
-    aiShow: boolean = false;
 
-  }*/
   @Component({
     components: {
       LeftMenu,
       AlpacaAI
     },
   })
-  export default class APP extends Vue{
-    aiShow = false;
+  export default class APP extends Vue {
+    private aiShow:boolean = false;
 
-    aiShowChange(){
-      this.aiShow = !this.aiShow
+    private aiShowChange() {
+      this.aiShow = !this.aiShow;
     }
 
-    created () {
-      setTimeout(()=>{
-        this.aiShow = true
-      },2000)
+    created() {
+      setTimeout(() => {
+        this.aiShow = true;
+      }, 2000);
     }
-   
-    /*created: function () {
-      setTimeout(()=>{
-        this.aiShow = true
-      },2000)
-    }
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      aiShowChange(){
-        this.aiShow = !this.aiShow
-      }
-    }*/
   }
 </script>

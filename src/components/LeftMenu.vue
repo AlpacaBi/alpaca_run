@@ -68,14 +68,14 @@ import { Component,  Vue } from 'vue-property-decorator';
 
 @Component
 export default class LeftMenu extends Vue {
-    handleOpen(key:any, keyPath:any) {
+    private handleOpen(key: any, keyPath: any) {
       console.log(key, keyPath);
     }
-    handleClose(key:any, keyPath:any) {
+    private handleClose(key: any, keyPath: any) {
       console.log(key, keyPath);
     }
-    aiShowChange(){
-        this.$emit('emitAiShow')
+    private aiShowChange() {
+        this.$emit('emitAiShow');
     }
 }
 </script>

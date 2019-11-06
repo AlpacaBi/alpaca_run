@@ -21,6 +21,9 @@ body{
   text-align: center;
   color: #2c3e50;
 }
+.right-content {
+  margin-left: 300px;
+}
 </style>
 <script lang="ts">
   import { Component,  Vue } from 'vue-property-decorator';

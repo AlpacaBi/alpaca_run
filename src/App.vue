@@ -190,7 +190,11 @@ body{
         aiShow: false
       }
     },
-
+    created: function () {
+      setTimeout(()=>{
+        this.aiShow=true
+      },2000)
+    },
     methods: {
       handleOpen(key, keyPath) {
         console.log(key, keyPath);

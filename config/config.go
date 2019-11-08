@@ -9,7 +9,6 @@ import (
 	"path/filepath"
 
 	jsoniter "github.com/json-iterator/go"
-	"hz.com/golib/utils"
 )
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
@@ -63,6 +62,12 @@ func LoadFromFile(path string) error {
 	return decoder.Decode(&Current)
 }
 
+func GetRootPath() string {
+	basePath, _ := exec.LookPath(os.Args[0])
+	path, _ := filepath.Abs(basePath)
+	return filepath.Dir(path)
+}
+
 func LoadConfig() {
 	configFile := flag.String("config", "", "The config file path.")
 	flag.Parse()
@@ -76,7 +81,7 @@ func LoadConfig() {
 	//setup log store path
 	logPath := Current.LogFile
 	if !filepath.IsAbs(logPath) {
-		logPath = path.Join(utils.GetRootPath(), logPath)
+		logPath = path.Join(GetRootPath(), logPath)
 	}
 
 	if !Current.Debug { //如果是调试模式，则直接输出到标准控制输出

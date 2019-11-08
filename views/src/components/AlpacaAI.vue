@@ -16,7 +16,7 @@ import { Component, Prop, Vue, PropSync } from 'vue-property-decorator';
 import 'animate.css';
 
 @Component
-export default class LeftMenu extends Vue {
+export default class AlpacaAI extends Vue {
     @PropSync('syncedAiShow', { type: Boolean, default: false }) public aiShow!: boolean;
     private closeAlpacaAI() {
       this.aiShow = false;

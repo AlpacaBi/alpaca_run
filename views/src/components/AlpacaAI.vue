@@ -1,7 +1,7 @@
 <template>
   <transition enter-active-class="animated slideInRight" leave-active-class="animated slideOutRight">
       <div class="ai" v-show="aiShow">
-        <div class="title">
+        <div class="title" @click="ping">
           Alpaca AI
         </div>
         <div class="close" @click="closeAlpacaAI">
@@ -20,6 +20,10 @@ export default class LeftMenu extends Vue {
     @PropSync('syncedAiShow', { type: Boolean, default: false }) public aiShow!: boolean;
     private closeAlpacaAI() {
       this.aiShow = false;
+    }
+    private async ping() {
+      const res: any = await this.$ajax.get('/ping');
+      console.log(res)
     }
 }
 </script>

@@ -18,4 +18,7 @@ views/yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+*.sw
+
+#golang
+__debug_bin

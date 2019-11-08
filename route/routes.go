@@ -1,7 +1,19 @@
 package route
 
-import "fmt"
+import (
+	"alpaca_blog/controllers"
 
-func routes() {
-	fmt.Printf("苟利国家生死以，岂因祸福避趋之\n")
+	"github.com/gin-gonic/gin"
+)
+
+func SetRoutes() (router *gin.Engine) {
+	router = gin.Default() //获得路由实例
+	router.Use(Middleware)
+	router.GET("/ping", controllers.Pong) //短信验证码
+	return
+}
+
+//Middleware Middleware
+func Middleware(c *gin.Context) {
+	//fmt.Println("this is a middleware!")
 }

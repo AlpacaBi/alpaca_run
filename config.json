@@ -1,0 +1,5 @@
+{
+    "listen":":9527",
+    "debug": true,
+    "logFile": "alpaca_bi.log"
+}

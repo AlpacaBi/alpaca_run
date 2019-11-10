@@ -5,12 +5,16 @@
         <h3>{{ item }}</h3>
       </el-carousel-item>
     </el-carousel>
+    <div>{{num}}</div>
+    <button @click="del">-</button>
+    <button @click="add">+</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { State, Mutation } from 'vuex-class'
 
 @Component({
   components: {
@@ -19,6 +23,12 @@ import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 })
 export default class Home extends Vue {
   private newArticles: string[] = ['关于ES6的研究', 'TypeScript装饰器探究', '为什么我会使用Graphql', 'Golang日常总结'];
+  @State num
+  @Mutation('del') del
+  @Mutation('add') add
+ 
+
+
 }
 </script>
 

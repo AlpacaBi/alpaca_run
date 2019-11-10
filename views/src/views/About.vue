@@ -15,34 +15,30 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class About extends Vue {
-  private created() {
-    console.log(this.$router.options.routes)
-  }
 
 }
 </script>
 
 <style lang="scss" scoped>
+@import url('//at.alicdn.com/t/font_886340_sspbd7xw47.css');
+.router-link-active {
+  color: rgb(122, 7, 28);
+  font-size: 1.1rem;
+}
 .nav {
   position: fixed;
   right: 10px;
   top: 45%;
   z-index: 100;
-  .iconfont {
-    font-family: "iconfont" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  .icon-dian:before {
-    content: "\e621";
-    box-sizing: border-box;
+  color: grey;
+  a {
+    text-decoration-line: none;
   }
   .nav-item {
     display: block;
     font-size: 11px;
     padding: 3px 0;
+    
   }
 }
 

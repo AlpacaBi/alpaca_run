@@ -4,7 +4,7 @@
         <div class="title" @click="ping">
           Alpaca AI
         </div>
-        <div class="close" @click="closeAlpacaAI">
+        <div class="close" @click="closeAiShow">
           <img src="@/assets/close.svg" alt="">
         </div>
       </div>
@@ -13,18 +13,17 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, PropSync } from 'vue-property-decorator';
+import { State, Mutation } from 'vuex-class'
 import 'animate.css';
 
 @Component
 export default class AlpacaAI extends Vue {
-    @PropSync('syncedAiShow', { type: Boolean, default: false }) public aiShow!: boolean;
-    private closeAlpacaAI() {
-      this.aiShow = false;
-    }
-    private async ping() {
-      const res: any = await this.$ajax.get('/ping');
-      console.log(res);
-    }
+  @State aiShow
+  @Mutation closeAiShow
+  private async ping() {
+    const res: any = await this.$ajax.get('/ping');
+    console.log(res);
+  }
 }
 </script>
 

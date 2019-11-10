@@ -1,11 +1,11 @@
 <template>
   <div id="app">
 
-    <LeftMenu @emitAiShow="aiShowChange"/>
+    <LeftMenu/>
 
     <div class="right-content"><router-view/></div>
 
-    <AlpacaAI :syncedAiShow.sync="aiShow"/>
+    <AlpacaAI/>
 
   </div>
 </template>
@@ -27,6 +27,7 @@ body{
 </style>
 <script lang="ts">
   import { Component,  Vue } from 'vue-property-decorator';
+  import { State, Mutation } from 'vuex-class'
   import LeftMenu from '@/components/LeftMenu.vue';
   import AlpacaAI from '@/components/AlpacaAI.vue';
 
@@ -37,15 +38,12 @@ body{
     },
   })
   export default class APP extends Vue {
-    private aiShow: boolean = false;
-
-    private aiShowChange() {
-      this.aiShow = !this.aiShow;
-    }
+    @State aiShow
+    @Mutation openAiShow
 
     private created() {
       setTimeout(() => {
-        this.aiShow = true;
+        this.openAiShow();
       }, 2000);
     }
   }

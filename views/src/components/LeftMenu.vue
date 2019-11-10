@@ -1,7 +1,7 @@
 <template>
   <div class="left-nav">
       <div class="avator">
-        <img src="@/assets/images/avatar.jpeg" alt="" title="点击唤醒人工智能" @click="aiShowChange">
+        <img src="@/assets/images/avatar.jpeg" alt="" title="点击唤醒人工智能" @click="changeAiShow">
         <div class="name">Alpaca Bi</div>
         <div class="info">
           <div class="item">
@@ -65,18 +65,18 @@
 
 <script lang="ts">
 import { Component,  Vue , Emit} from 'vue-property-decorator';
+import { Mutation } from 'vuex-class'
 
 @Component
 export default class LeftMenu extends Vue {
-    private handleOpen(key: any, keyPath: any) {
-      console.log(key, keyPath);
-    }
-    private handleClose(key: any, keyPath: any) {
-      console.log(key, keyPath);
-    }
+  @Mutation changeAiShow
 
-    @Emit('emitAiShow')
-    private aiShowChange() {/**/}
+  private handleOpen(key: any, keyPath: any) {
+    console.log(key, keyPath);
+  }
+  private handleClose(key: any, keyPath: any) {
+    console.log(key, keyPath);
+  }
 }
 </script>
 

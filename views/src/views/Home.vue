@@ -24,11 +24,8 @@ import { State, Mutation } from 'vuex-class'
 export default class Home extends Vue {
   private newArticles: string[] = ['关于ES6的研究', 'TypeScript装饰器探究', '为什么我会使用Graphql', 'Golang日常总结'];
   @State num
-  @Mutation('del') del
-  @Mutation('add') add
- 
-
-
+  @Mutation del
+  @Mutation add
 }
 </script>
 

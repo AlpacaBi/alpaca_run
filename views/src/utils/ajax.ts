@@ -25,7 +25,7 @@ service.interceptors.request.use(
     // Do something with request error
     console.error('error:', error); // for debug
     Promise.reject(error);
-  }
+  },
 );
 
 // respone拦截器 axios的一些配置
@@ -36,7 +36,7 @@ service.interceptors.response.use(
   (error: any) => {
     console.error('error:' + error); // for debug
     return Promise.reject(error);
-  }
+  },
 );
 
 export default service;

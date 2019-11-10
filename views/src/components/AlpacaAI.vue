@@ -23,7 +23,7 @@ export default class AlpacaAI extends Vue {
     }
     private async ping() {
       const res: any = await this.$ajax.get('/ping');
-      console.log(res)
+      console.log(res);
     }
 }
 </script>
@@ -36,6 +36,7 @@ export default class AlpacaAI extends Vue {
 }
 .ai{
   position: fixed;
+  z-index: 2;
   width: 450px;
   top: 0;
   right: 0;

@@ -69,7 +69,7 @@ import { Mutation } from 'vuex-class'
 
 @Component
 export default class LeftMenu extends Vue {
-  @Mutation changeAiShow
+  @Mutation changeAiShow!: Function
 
   private handleOpen(key: any, keyPath: any) {
     console.log(key, keyPath);

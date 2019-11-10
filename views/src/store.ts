@@ -5,18 +5,45 @@ import { info, skills, profiles,  contact } from './data/data'
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
-    aiShow: false,
-    num: 0,
-    routes: router.options.routes[1].children,
-    animateOptions: {},
-    showArrow: true,
-    info,
-    skills,
-    profiles,
-    contact
+interface IAnimateOptions {
+  leave: string;
+  enter: string;
+  leaveTime: number;
+  enterTime: number;
+}
+
+interface IState {
+  aiShow: boolean;
+  num: number;
+  routes: any;
+  animateOptions: IAnimateOptions;
+  showArrow: boolean;
+  info: any;
+  skills: any;
+  profiles: any;
+  contact: any;
+}
+
+let state:IState = {
+  aiShow: false,
+  num: 0,
+  routes: router,
+  animateOptions: {
+    leave: 'fadeOutDown',
+    enter: 'fadeInDown',
+    leaveTime: 1500,
+    enterTime: 1500
   },
+  showArrow: true,
+  info,
+  skills,
+  profiles,
+  contact
+}
+
+
+export default new Vuex.Store({
+  state: state,
   mutations: {
     add(state) {
       state.num++;
@@ -48,23 +75,21 @@ export default new Vuex.Store({
       return new Promise(resolve => {
         // console.log(presentPath)
         // 获取当前页面路径在整体路由的位置
-        const index = state.routes.findIndex(route => {
+        const index = state.routes.options.routes[1].children.findIndex((route: any) => {
           return route.name === presentName
         })
         // 获取当前路由的下一个路由路径
         let nextPageName
-        console.log(index)
-        if (index + 1 === state.routes.length) {
-          nextPageName = state.routes[0].name
+        if (index + 1 === state.routes.options.routes[1].children.length) {
+          nextPageName = state.routes.options.routes[1].children[0].name
         } else {
-          nextPageName = state.routes[index + 1].name
+          nextPageName = state.routes.options.routes[1].children[index + 1].name
         }
-        console.log("nextPageName:"+nextPageName)
         const animateDirection = {
-          leave: 'fadeOutDown',
-          enter: 'fadeInDown',
-          leaveTime: 1500,
-          enterTime: 1500
+          leave: 'slideOutUp',
+          enter: 'slideInUp',
+          leaveTime: 1000,
+          enterTime: 1000
         }
         commit('changeAnimateDirection', animateDirection)
         // commit('nextPage', nextPagePath)
@@ -80,21 +105,21 @@ export default new Vuex.Store({
       return new Promise(resolve => {
         // console.log(presentPath)
         // 获取当前页面路径在整体路由的位置
-        const index = state.routes.findIndex(route => route.name === presentName)
+        const index = state.routes.options.routes[1].children.findIndex((route: any) => route.name === presentName)
         // 获取当前路由的上一个路由路径
         let lastPageName
         if (index === 0) {
-          const routesLength = state.routes.length
-          lastPageName = state.routes[routesLength - 1].name
+          const routesLength = state.routes.options.routes[1].children.length
+          lastPageName = state.routes.options.routes[1].children[routesLength - 1].name
         } else {
-          lastPageName = state.routes[index - 1].name
+          lastPageName = state.routes.options.routes[1].children[index - 1].name
         }
         // console.log(lastPagePath)
         const animateDirection = {
-          leave: 'fadeOutUp',
-          enter: 'fadeInUp',
-          leaveTime: 1500,
-          enterTime: 1500
+          leave: 'slideOutDown',
+          enter: 'slideInDown',
+          leaveTime: 1000,
+          enterTime: 1000
         }
         commit('changeAnimateDirection', animateDirection)
         // commit('lastPage', lastPagePath)
@@ -110,8 +135,8 @@ export default new Vuex.Store({
       const animateDirection = {
         leave: 'zoomOut',
         enter: 'zoomIn',
-        leaveTime: 1500,
-        enterTime: 1500
+        leaveTime: 1000,
+        enterTime: 1000
       }
       commit('changeAnimateDirection', animateDirection)
       commit('changeShowArrow')

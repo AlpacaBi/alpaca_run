@@ -18,8 +18,8 @@ import 'animate.css';
 
 @Component
 export default class AlpacaAI extends Vue {
-  @State aiShow
-  @Mutation closeAiShow
+  @State aiShow!: boolean
+  @Mutation closeAiShow!: Function
   private async ping() {
     const res: any = await this.$ajax.get('/ping');
     console.log(res);

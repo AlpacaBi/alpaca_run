@@ -1,24 +1,36 @@
 import avatar from '@/assets/images/avatar.jpeg'
+import location from '@/assets/images/location.svg'
+import qualifications from '@/assets/images/qualifications.svg'
+import marriage from '@/assets/images/marriage.svg'
+import workstatus from '@/assets/images/workstatus.svg'
+
 export const info = {
   name: '毕国康',
   avatar,
-  introduce: '博学之,审问之,慎思之,明辨之,笃行之',
+  introduce: 'Talk and code is cheap, show me your money',
+  intros: [
+    "一个来自广州的95后web全栈工程师",
+    "热爱IT技术，从前端到deep learning都有所涉猎",
+    "目前从事web开发工作，目前工作技术栈：Regularjs+Golang",
+    "工作时间之外也鼓捣项目，业余技术栈：Vue.js+TypeScript+Golang",
+    "喜欢唱、跳、rap、写代码"
+  ],
   status: [
     {
-      icon: 'icon-icon-',
-      value: '四川'
+      img: location,
+      value: '广州'
     },
     {
-      icon: 'icon-xueli',
+      img: qualifications,
       value: '本科'
     },
     {
-      icon: 'icon--jiehun',
+      img: marriage,
       value: '未婚'
     },
     {
-      icon: 'icon-zhiwei',
-      value: '离职'
+      img: workstatus,
+      value: '在职'
     }
   ]
 }

@@ -38,8 +38,8 @@ body{
     },
   })
   export default class APP extends Vue {
-    @State aiShow
-    @Mutation openAiShow
+    @State aiShow!: boolean
+    @Mutation openAiShow!: Function
 
     private created() {
       setTimeout(() => {

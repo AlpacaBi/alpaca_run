@@ -1,40 +1,7 @@
 <template>
 <div class="page-item section">
-    <div class="contact">
-      <div class="experience">
-        <h3>Experiences</h3>
-        <template v-for="(item, index) in contact.experiences">
-          <p class="p-item" :key="index">{{item}}</p>
-        </template>
-        <!-- {{contact.experience}} -->
-      </div>
-      <div class="evaluation">
-        <h3>Evaluation</h3>
-        {{contact.evaluation}}
-      </div>
-      <div class="socials">
-        <h3>Socias</h3>
-        <div class="box">
-          <template v-for="(item, index) in contact.socials">
-            <a class="socials-item" :key="index" :href="item.url" target="_blank">
-              <mu-icon class="icon" :value="`:iconfont ${item.icon}`"></mu-icon>
-            </a>
-          </template>
-        </div>
-      </div>
-      <div class="contact-me">
-        <h3>Contact Me</h3>
-        <a class="btn" :href="`tel:${contact.tel}`" target="_blank">
-          <mu-icon class="icon" :value="`:iconfont icon-dianhua`"></mu-icon>
-          {{contact.tel}}
-        </a>
-        <a class="btn" target="_blank">
-          <mu-icon class="icon" :value="`:iconfont icon-fayoujian`"></mu-icon>
-          {{contact.email}}
-        </a>
-      </div>
-    </div>
-  </div>
+    contact
+</div>
 </template>
 
 <script lang="ts">
@@ -43,14 +10,14 @@ import { State } from 'vuex-class'
 
 @Component
 export default class Contact extends Vue {
-  @State contact
+  @State contact!: any
 }
 </script>
 
 <style lang="scss" scoped>
 .section {
   height: 100vh;
-  background-color: rgba(13, 16, 110, 0.575) !important;
+  /*background-color: rgba(13, 16, 110, 0.575) !important;*/
   .contact {
     width: 85%;
     text-align: left;

@@ -1,18 +1,27 @@
 <template>
   <div class="page-item section">
-    <mu-avatar size=80>
-      <img :src="info.avatar">
-    </mu-avatar>
+  
+    <img :src="info.avatar">
+    
     <h4>{{info.name}}</h4>
     <h3>{{info.introduce}}</h3>
-    <mu-container class="papers">
-      <template v-for="(item, index) in info.status">
-        <mu-paper :key="index" class="paper" circle :z-depth="4">
-          <i :class="`iconfont ${item.icon}`"></i>
-          <div class="title">{{item.value}}</div>
-        </mu-paper>
+    <div class="papers">
+      <template v-for="(item, index) in info.intros">
+        <div :key="index" class="paper">
+          <div class="title">{{item}}</div>
+        </div>
       </template>
-    </mu-container>
+    </div>
+
+    <div class="infos">
+      <template v-for="(item, index) in info.status">
+        <div :key="index" class="info">
+          <div><img :src="item.img"></div>
+          <div class="title">{{item.value}}</div>
+        </div>
+      </template>
+    </div>
+
   </div>
 </template>
 
@@ -23,35 +32,54 @@ import { State } from 'vuex-class'
 
 @Component
 export default class Info extends Vue {
-  @State info
+  @State info!: any
 }
 </script>
 
 <style lang="scss" scoped>
 .section {
   height: 100vh;
-  background-color: rgb(20, 73, 73) !important;
-  .papers {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    .paper {
-      margin: 15px;
-      width: 50px;
+  background-color: black;
+  color: white;
+  /*background-color: rgb(20, 73, 73) !important;*/
+  img{
+    border-radius: 100%;
+    height: 200px;
+    width: 200px;
+    margin-top: 12vh;
+    border: 1px solid white;
+  }
+  h4{
+    font-size: 40px;
+    margin-top: 2px;
+    margin-bottom: 0px
+  }
+  h3{
+    font-size: 22px;
+    margin-top: 6px;
+  }
+  .papers{
+    margin-top: 30px;
+  }
+  .paper{
+    margin-top: 5px;
+  }
+
+  .infos{
+    margin-top: 0
+  }
+  .info{
+    display: inline-block;
+    margin-left: 12px;
+    margin-right: 12px;
+    img{
       height: 50px;
-      color: rgb(192, 200, 207);
-      background-color: rgba(97, 136, 207, 0.363);
-      .iconfont {
-        height: 50px;
-        line-height: 50px;
-        font-size: 30px;
-      }
-      .title {
-        font-size: .9rem;
-        margin: 5px 0;
-      }
+      width: 50px;
+      border: none;
+      border-radius: 0;
     }
   }
+
 }
 </style>
 

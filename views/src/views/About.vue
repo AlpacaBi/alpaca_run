@@ -2,10 +2,18 @@
   <div @mousewheel="mouseWheel">
     <div class="nav">
       <template v-for="(item, index) in this.$router.options.routes[1].children">
-        <router-link :to="{name: item.name}" :key="index" exact><i class="iconfont icon-dian nav-item"></i></router-link>
+        <router-link :to="{name: item.name}" :key="index" exact><i @click="clickRouteChange" class="nav-item"></i></router-link>
       </template>
     </div>
-    <router-view/>
+    <div class="page">
+      <transition
+        mode="out-in"
+        :duration="{ enter: animateOptions.enterTime, leave: animateOptions.leaveTime }"
+        :leave-active-class="'animated ' + animateOptions.leave"
+        :enter-active-class="'animated ' + animateOptions.enter">
+        <router-view />
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -17,13 +25,15 @@ import 'animate.css';
 
 @Component
 export default class About extends Vue {
+  @State animateOptions:any
 
-  @Action next
-  @Action last
+  @Action next!: Function
+  @Action last!: Function
+  @Action clickRouteChange!: Function
 
   private lastScroll: number = 0
 
-  private mouseWheel (event) {
+  private mouseWheel (event:any) {
     // 防止用户短时间内滚动多次，设置滚动间隔大于一秒才能生效
     // 判断滚动间隔时间
     let scrollDuration = event.timeStamp - this.lastScroll
@@ -34,12 +44,12 @@ export default class About extends Vue {
     // 判断滚动方向进行操作
     if (event.deltaY > 0) {
       const presentName = this.$route.name
-      this.next(presentName).then(nextPageName => {
+      this.next(presentName).then((nextPageName: string)  => {
         this.$router.push({name:nextPageName})
       })
     } else {
       const presentName = this.$route.name
-      this.last(presentName).then(lastPageName => {
+      this.last(presentName).then((lastPageName: string) => {
         this.$router.push({name:lastPageName})
       })
     }
@@ -50,25 +60,39 @@ export default class About extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import url('//at.alicdn.com/t/font_886340_sspbd7xw47.css');
-.router-link-active {
-  color: rgb(122, 7, 28);
-  font-size: 1.1rem;
-}
+
+
+  
 .nav {
   position: fixed;
-  right: 10px;
+  left: 310px;
   top: 45%;
   z-index: 100;
   color: grey;
   a {
     text-decoration-line: none;
   }
+
   .nav-item {
     display: block;
     font-size: 11px;
-    padding: 3px 0;
+    margin-top: 5px;
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    background-color: grey;
+    opacity: 0.5;
+  }
+  .router-link-active {
+    .nav-item {
+      background-color: white !important;
+    }
   }
 }
+.page{
+  background-color: black;
+}
+
+
 
 </style>

@@ -1,26 +1,6 @@
 <template>
   <div class="page-item section">
-    <mu-carousel class="carousel" :hide-controls="controls" :hide-indicators="indicators" :interval="interval"  transition="slide" :cycle="cycle">
-      <template v-for="(profile, index) in profiles">
-        <mu-carousel-item :key="index">
-          <mu-container class="box">
-            <mu-card class="card" style="width: 100%; margin: 0 auto;">
-              <mu-card-header :title="profile.title" :sub-title="profile.subTitle" />
-              <!-- <mu-card-media class="img">
-                <img src="../assets/design.jpg">
-              </mu-card-media> -->
-              <mu-card-title :sub-title="'技术栈：' + profile.skills"></mu-card-title>
-              <mu-card-text>
-                {{profile.text}}
-              </mu-card-text>
-              <mu-card-actions><a :href="profile.github" target="_blank">
-                  <mu-icon class="icon" value=":iconfont icon-GitHub"></mu-icon></a>
-              </mu-card-actions>
-            </mu-card>
-          </mu-container>
-        </mu-carousel-item>
-      </template>
-    </mu-carousel>
+    profile
   </div>
 </template>
 
@@ -30,7 +10,7 @@ import { State } from 'vuex-class'
 
 @Component
 export default class Profile extends Vue {
-  @State profile
+  @State profile!: any
 
   private cycle: boolean = true
   private indicators: boolean = true
@@ -42,7 +22,7 @@ export default class Profile extends Vue {
 <style lang="scss" scoped>
 .section {
   height: 100vh;
-  background-color: rgb(73, 80, 10) !important;
+  /*background-color: rgb(73, 80, 10) !important;*/
   .carousel {
     // height: auto;
     min-height: 50vh;

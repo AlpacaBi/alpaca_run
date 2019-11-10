@@ -10,7 +10,12 @@ import (
 
 func main() {
 	//全局设置环境，此为开发环境，线上环境为gin.ReleaseMode
-	gin.SetMode(gin.DebugMode)
+	if config.Current.Debug {
+		gin.SetMode(gin.DebugMode)
+	} else {
+		gin.SetMode(gin.ReleaseMode)
+	}
+
 	//读取配置文件
 	config.LoadConfig()
 	//配置api路由

@@ -40,8 +40,8 @@ export default new Router({
           path: 'contact',
           name: 'contact',
           component: () => import('./components/AboutSection/Contact.vue'),
-        }
-      ]
+        },
+      ],
     },
   ],
 });

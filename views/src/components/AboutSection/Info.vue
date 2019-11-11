@@ -27,12 +27,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { State } from 'vuex-class'
+import { State } from 'vuex-class';
 
 
 @Component
 export default class Info extends Vue {
-  @State info!: any
+  @State private info!: any;
 }
 </script>
 

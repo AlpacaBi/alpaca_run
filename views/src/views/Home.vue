@@ -14,7 +14,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-import { State, Mutation } from 'vuex-class'
+import { State, Mutation } from 'vuex-class';
 
 @Component({
   components: {
@@ -23,9 +23,9 @@ import { State, Mutation } from 'vuex-class'
 })
 export default class Home extends Vue {
   private newArticles: string[] = ['关于ES6的研究', 'TypeScript装饰器探究', '为什么我会使用Graphql', 'Golang日常总结'];
-  @State num!: number
-  @Mutation del!: Function
-  @Mutation add!: Function
+  @State private num!: number;
+  @Mutation private del!: () => void;
+  @Mutation private add!: () => void;
 }
 </script>
 

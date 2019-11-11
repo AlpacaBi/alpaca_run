@@ -6,16 +6,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { State } from 'vuex-class'
+import { State } from 'vuex-class';
 
 @Component
 export default class Profile extends Vue {
-  @State profile!: any
-
-  private cycle: boolean = true
-  private indicators: boolean = true
-  private controls: boolean = false
-  private interval: number = 10000
+  @State private profile!: any;
 }
 </script>
 

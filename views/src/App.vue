@@ -27,7 +27,7 @@ body{
 </style>
 <script lang="ts">
   import { Component,  Vue } from 'vue-property-decorator';
-  import { State, Mutation } from 'vuex-class'
+  import { State, Mutation } from 'vuex-class';
   import LeftMenu from '@/components/LeftMenu.vue';
   import AlpacaAI from '@/components/AlpacaAI.vue';
 
@@ -38,8 +38,8 @@ body{
     },
   })
   export default class APP extends Vue {
-    @State aiShow!: boolean
-    @Mutation openAiShow!: Function
+    @State private aiShow!: boolean;
+    @Mutation private openAiShow!: () => void;
 
     private created() {
       setTimeout(() => {

@@ -13,13 +13,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, PropSync } from 'vue-property-decorator';
-import { State, Mutation } from 'vuex-class'
+import { State, Mutation } from 'vuex-class';
 import 'animate.css';
 
 @Component
 export default class AlpacaAI extends Vue {
-  @State aiShow!: boolean
-  @Mutation closeAiShow!: Function
+  @State private aiShow!: boolean;
+  @Mutation private closeAiShow!: () => void;
   private async ping() {
     const res: any = await this.$ajax.get('/ping');
     console.log(res);

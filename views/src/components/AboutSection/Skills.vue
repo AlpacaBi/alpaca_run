@@ -6,11 +6,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { State } from 'vuex-class'
+import { State } from 'vuex-class';
 
 @Component
 export default class Skills extends Vue {
-  @State skills!: any
+  @State private skills!: any;
 }
 </script>
 

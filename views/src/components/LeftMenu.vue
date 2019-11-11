@@ -65,11 +65,11 @@
 
 <script lang="ts">
 import { Component,  Vue , Emit} from 'vue-property-decorator';
-import { Mutation } from 'vuex-class'
+import { Mutation } from 'vuex-class';
 
 @Component
 export default class LeftMenu extends Vue {
-  @Mutation changeAiShow!: Function
+  @Mutation private changeAiShow!: () => void;
 
   private handleOpen(key: any, keyPath: any) {
     console.log(key, keyPath);

@@ -14,9 +14,11 @@ import (
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 type configuration struct {
-	Listen  string `json:"listen"`
-	Debug   bool   `json:"debug"`
-	LogFile string `json:"logFile"` //日志
+	Listen       string `json:"listen"`
+	Debug        bool   `json:"debug"`
+	LogFile      string `json:"logFile"`      //日志
+	TulingAPIKey string `json:"tulingAPIKey"` //图灵机器人APIKey
+	TulingAPIURL string `json:"tulingAPIURL"` //图灵机器人接口URL
 }
 
 //Current the current configuration
@@ -28,6 +30,8 @@ func init() {
 		":9527",
 		true,
 		"alpaca_blog.log",
+		"",
+		"",
 	}
 
 	basePath, _ := exec.LookPath(os.Args[0])

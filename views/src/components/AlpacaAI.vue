@@ -8,45 +8,25 @@
           <img src="@/assets/images/close.svg" alt="">
         </div>
         <div class="content">
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
-          <div style="font-size:50px">content</div>
+          <template v-for="(item, index) in chatlist">
+          <div :key="index">
+            <div v-if="item.type == 0">
+              <div class="left-bubble">{{item.content}}</div>
+            </div>
+            <div v-else>
+              <div class="right-bubble">{{item.content}}</div>
+            </div>
+          </div>
+        </template>
         </div>
         <div class="footer">
-          <input placeholder="输入文字即可和Alapca AI聊天！！！"/>
-          <img class="sendtext" src="@/assets/images/sendtext.svg" alt="">
-          <img class="sendimg" src="@/assets/images/sendimg.svg" alt="">
+          <input v-model.trim="chatContent" placeholder="输入文字即可和Alapca AI聊天！！！" @keyup.enter="sendText"/>
+          <el-tooltip content="发送文字" placement="top">
+            <img class="sendtext" @click="sendText" src="@/assets/images/sendtext.svg" alt="" >
+          </el-tooltip>
+          <el-tooltip content="发送图片" placement="top">
+            <img class="sendimg" src="@/assets/images/sendimg.svg" alt="" @click="sendImage">
+          </el-tooltip>
         </div>
       </div>
     </transition>
@@ -57,13 +37,58 @@ import { Component, Prop, Vue, PropSync } from 'vue-property-decorator';
 import { State, Mutation } from 'vuex-class';
 import 'animate.css';
 
+interface IChatArrList {
+  type: number;
+  content: string;
+}
+
 @Component
 export default class AlpacaAI extends Vue {
   @State private aiShow!: boolean;
   @Mutation private closeAiShow!: () => void;
+
+  private chatlist: IChatArrList[] = [];
+  private chatContent: string = '';
+
   private async ping() {
     const res: any = await this.$ajax.get('/ping');
     console.log(res);
+  }
+  private AlpacaAISaid(content: string): void {
+    this.chatlist.push({type: 0, content});
+    const container: any = this.$el.querySelector('.content');
+    container.scrollTop = container.scrollHeight;
+  }
+  private VisitorSaid(content: string): void {
+    this.chatlist.push({type: 1, content});
+    const container: any = this.$el.querySelector('.content');
+    container.scrollTop = container.scrollHeight;
+  }
+  private async sendText() {
+    const container: any = this.$el.querySelector('.content');
+    if (this.chatContent === '') {
+      this.AlpacaAISaid('抱歉，我没听到');
+      return;
+    } else {
+      this.VisitorSaid(this.chatContent);
+      const res: any = await this.$ajax.post('/ai/text', {
+        text: this.chatContent,
+      });
+      this.chatContent = '';
+      if (res.data.status === 'ok') {
+        this.AlpacaAISaid(res.data.message);
+      } else {
+        this.AlpacaAISaid('抱歉，AI服务器网络错误');
+      }
+    }
+  }
+  private sendImage() {
+    this.AlpacaAISaid('图片识别功能开发中...');
+  }
+  private created() {
+    setTimeout(() => {
+      this.AlpacaAISaid('你好啊，我是Alpaca AI,一个人工智能，你可以打字和我聊天！！！！');
+    }, 3500);
   }
 }
 </script>
@@ -110,6 +135,38 @@ export default class AlpacaAI extends Vue {
     position: absolute;
     z-index: 10;
     bottom: 55px;
+    padding-bottom: 80px;
+    .left-bubble{
+      float: left;
+      width: 300px;
+      text-align: left;
+      padding: 10px;
+      margin: 10px;
+      color: white;
+      word-break:break-all;
+      background-color: grey;
+      border-radius: 8px;
+      -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+      -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+      -o-box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+    }
+    .right-bubble{
+      float: right;
+      width: 300px;
+      text-align: left;
+      padding: 10px;
+      margin: 10px;
+      color: black;
+      word-break:break-all;
+      border-radius: 8px;
+      -webkit-box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.05);
+      -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+      -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+      -o-box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+    }
   }
   .content::-webkit-scrollbar {/*滚动条整体样式*/
     margin-right: 20px;
@@ -118,11 +175,11 @@ export default class AlpacaAI extends Vue {
   }
   .content::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
       border-radius: 2px;
-      -webkit-box-shadow: inset 0 0 5px grey;
+      --webkit-box-shadow: inset 0 0 5px grey;
       background:rgba(239,239,239,1);
   }
   .content::-webkit-scrollbar-track {/*滚动条里面轨道*/
-      -webkit-box-shadow: inset 0 0 5px transparent;
+      --webkit-box-shadow: inset 0 0 5px transparent;
       border-radius: 0;
       background: transparent;
   }
@@ -142,7 +199,7 @@ export default class AlpacaAI extends Vue {
       margin-left: 40px;
       outline: none;
       border: none;
-      font-size: 18px;
+      font-size: 12px;
       padding-right: 10px;
       padding-left: 10px;
     }
@@ -154,6 +211,9 @@ export default class AlpacaAI extends Vue {
       width: 34px;
       cursor: pointer;
     }
+    .sendtext:active{
+      transform: scale(0.9)
+    }
     .sendimg{
       display: inline-block;
       vertical-align: bottom;
@@ -161,6 +221,9 @@ export default class AlpacaAI extends Vue {
       height: 34px;
       width: 34px;
       cursor: pointer;
+    }
+    .sendimg:active{
+      transform: scale(0.9)
     }
   }
 }

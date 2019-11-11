@@ -1,5 +1,7 @@
 {
     "listen":":9527",
     "debug": true,
-    "logFile": "alpaca_bi.log"
+    "logFile": "alpaca_bi.log",
+    "tulingAPIKey": "6c300a181aef48ef80a0113fdb03d07a",
+    "tulingAPIURL":"http://openapi.tuling123.com/openapi/api/v2"
 }

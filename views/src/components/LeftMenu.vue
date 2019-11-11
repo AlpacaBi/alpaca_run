@@ -5,15 +5,15 @@
         <div class="name">Alpaca Bi</div>
         <div class="info">
           <div class="item">
-            <img src="@/assets/GitHub.png" alt="">
+            <img src="@/assets/images/GitHub.png" alt="">
             <a class="text" href="https://github.com/AlpacaBi" target="_blank">AlpacaBi</a>
           </div>
           <div class="item">
-            <img src="@/assets/wechat.png" alt="">
+            <img src="@/assets/images/wechat.png" alt="">
             <a class="text" href="mailto:let@alpaca.run">let@alpaca.run</a>
           </div>
           <div class="item">
-            <img src="@/assets/mail.png" alt="">
+            <img src="@/assets/images/mail.png" alt="">
             <a class="text">workbiguokang</a>
           </div>
         </div>

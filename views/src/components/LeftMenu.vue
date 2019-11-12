@@ -56,11 +56,13 @@
           <a href="http://www.beian.miit.gov.cn" target="_blank">粤ICP备17017545号</a>
         </div>
         <div style="margin-top: 0.5vh;">
-          Create by <a href="https://vuejs.org" target="_blank" style="color:#4fc08d">Vue.js</a>
+          Create by 
+          <a href="https://vuejs.org" target="_blank" style="color:#4fc08d">Vue.js</a>
+          +
+          <a href="https://golang.org" target="_blank" style="color:#00ADD8">Golang</a>
         </div>
       </div>
     </div>
-
 </template>
 
 <script lang="ts">
@@ -91,6 +93,7 @@ export default class LeftMenu extends Vue {
   height: 100%;
   width: 300px;
   color: white;
+  z-index: 6;
   .avator{
     text-align: center;
     img{

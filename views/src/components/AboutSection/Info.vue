@@ -1,5 +1,7 @@
 <template>
   <div class="page-item section">
+
+    <div class="info-title">Info</div>
   
     <img :src="info.avatar">
     
@@ -41,12 +43,18 @@ export default class Info extends Vue {
   height: 100vh;
   background-color: black;
   color: white;
-  /*background-color: rgb(20, 73, 73) !important;*/
+  /*background-color: #4fc08d !important;*/
+  .info-title{
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
+    padding-top: 8vh;
+    margin-bottom: 4vh;
+  }
   img{
     border-radius: 100%;
     height: 200px;
     width: 200px;
-    margin-top: 12vh;
     border: 1px solid white;
   }
   h4{
@@ -66,7 +74,7 @@ export default class Info extends Vue {
   }
 
   .infos{
-    margin-top: 0
+    margin-top: 64px;
   }
   .info{
     display: inline-block;

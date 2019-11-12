@@ -1,6 +1,6 @@
 <template>
 <div class="page-item section">
-    contact
+  <div class="contact-title">contact</div>
 </div>
 </template>
 
@@ -17,7 +17,14 @@ export default class Contact extends Vue {
 <style lang="scss" scoped>
 .section {
   height: 100vh;
-  /*background-color: rgba(13, 16, 110, 0.575) !important;*/
+  background-color: rgba(13, 16, 110, 0.575) !important;
+  .contact-title{
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
+    padding-top: 8vh;
+    margin-bottom: 4vh;
+  }
   .contact {
     width: 85%;
     text-align: left;

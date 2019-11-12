@@ -1,6 +1,6 @@
 <template>
   <div class="page-item section">
-    skills
+    <div class="skills-title">Skills</div>
   </div>
 </template>
 
@@ -17,7 +17,14 @@ export default class Skills extends Vue {
 <style lang="scss" scoped>
 .section {
   height: 100vh;
-  /*background-color: rgb(56, 19, 59) !important;*/
+  background-color: #00ADD8 !important;
+  .skills-title{
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
+    padding-top: 8vh;
+    margin-bottom: 4vh;
+  }
   .container {
     width: 80%;
     .chip {

@@ -86,8 +86,8 @@ export default new Vuex.Store({
           nextPageName = state.routes.options.routes[1].children[index + 1].name;
         }
         const animateDirection = {
-          leave: 'slideOutUp',
-          enter: 'slideInUp',
+          leave: 'rollOut',
+          enter: 'rollIn',
           leaveTime: 1000,
           enterTime: 1000,
         };
@@ -116,8 +116,8 @@ export default new Vuex.Store({
         }
         // console.log(lastPagePath)
         const animateDirection = {
-          leave: 'slideOutDown',
-          enter: 'slideInDown',
+          leave: 'lightSpeedOut',
+          enter: 'lightSpeedIn',
           leaveTime: 1000,
           enterTime: 1000,
         };

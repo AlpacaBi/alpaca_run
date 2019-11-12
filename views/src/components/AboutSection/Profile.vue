@@ -1,6 +1,6 @@
 <template>
   <div class="page-item section">
-    profile
+    <div class="profile-title">Profile</div>
   </div>
 </template>
 
@@ -17,7 +17,14 @@ export default class Profile extends Vue {
 <style lang="scss" scoped>
 .section {
   height: 100vh;
-  /*background-color: rgb(73, 80, 10) !important;*/
+  background-color: #4fc08d !important;
+  .profile-title{
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
+    padding-top: 8vh;
+    margin-bottom: 4vh;
+  }
   .carousel {
     // height: auto;
     min-height: 50vh;

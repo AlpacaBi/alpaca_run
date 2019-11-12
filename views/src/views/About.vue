@@ -5,7 +5,7 @@
         <router-link :to="{name: item.name}" :key="index" exact><i @click="clickRouteChange" class="nav-item"></i></router-link>
       </template>
     </div>
-    <div class="page">
+    <div :class="'page'+this.$route.name">
       <transition
         mode="out-in"
         :duration="{ enter: animateOptions.enterTime, leave: animateOptions.leaveTime }"
@@ -60,9 +60,6 @@ export default class About extends Vue {
 </script>
 
 <style lang="scss" scoped>
-
-
-  
 .nav {
   position: fixed;
   left: 310px;
@@ -89,8 +86,17 @@ export default class About extends Vue {
     }
   }
 }
-.page{
+.pageinfo{
   background-color: black;
+}
+.pageskills{
+  background-color: #00ADD8;
+}
+.pageprofile{
+  background-color: #4fc08d;
+}
+.pagecontact{
+  background-color: rgba(13, 16, 110, 0.575);
 }
 
 

@@ -40,20 +40,26 @@ export default class Home extends Vue {
     margin-left: 5%;
   }
 
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 35px;
-    opacity: 0.75;
-    line-height: 200px;
-    margin: 0;
+  .el-carousel__item--card{
+    background-color: white;
+    border-radius: 6px;
+    
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   }
-  
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
+
+  .el-carousel__item--card.is-active:hover{
+    /* 明亮的边框 */
+    border: 1px solid grey;
+    /* 闪烁的动画 */
+    animation:flash 2s linear infinite;         
   }
-  
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
+  /* 添加不同透明度的投影 */
+  @keyframes flash{
+    0%{box-shadow:0 0 10px grey; }
+    50%{box-shadow:0 0 10px white; }
+    100%{box-shadow:0 0 10px grey; }
   }
 
 </style>

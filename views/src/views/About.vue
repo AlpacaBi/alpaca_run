@@ -87,16 +87,16 @@ export default class About extends Vue {
   }
 }
 .pageinfo{
-  background-color: black;
+  background-color: #101010;
 }
 .pageskills{
-  background-color: #00ADD8;
+  background-color: #409EFF;
 }
 .pageprofile{
-  background-color: #4fc08d;
+  background-color: #24292e;
 }
 .pagecontact{
-  background-color: rgba(13, 16, 110, 0.575);
+  background-color: #83B8EF;
 }
 
 

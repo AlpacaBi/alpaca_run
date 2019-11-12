@@ -41,7 +41,7 @@ export default class Info extends Vue {
 <style lang="scss" scoped>
 .section {
   height: 100vh;
-  background-color: black;
+  background-color: #101010;
   color: white;
   /*background-color: #4fc08d !important;*/
   .info-title{

@@ -13,7 +13,7 @@ export const info = {
     '热爱IT技术，从前端到deep learning都有所涉猎',
     '目前从事web开发工作，目前工作技术栈：Regularjs+Golang',
     '工作时间之外也鼓捣项目，业余技术栈：Vue.js+TypeScript+Golang',
-    '喜欢唱、跳、rap、写代码',
+    '哲♂学爱好者，喜欢唱、跳、rap、写代码',
   ],
   status: [
     {

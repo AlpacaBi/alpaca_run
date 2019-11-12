@@ -9,11 +9,11 @@
             <a class="text" href="https://github.com/AlpacaBi" target="_blank">AlpacaBi</a>
           </div>
           <div class="item">
-            <img src="@/assets/images/wechat.png" alt="">
+            <img src="@/assets/images/mail.png" alt="">
             <a class="text" href="mailto:let@alpaca.run">let@alpaca.run</a>
           </div>
           <div class="item">
-            <img src="@/assets/images/mail.png" alt="">
+            <img src="@/assets/images/wechat.png" alt="">
             <a class="text">workbiguokang</a>
           </div>
         </div>
@@ -94,6 +94,9 @@ export default class LeftMenu extends Vue {
   width: 300px;
   color: white;
   z-index: 6;
+  .el-menu {
+    border-right: none;
+  }
   .avator{
     text-align: center;
     img{

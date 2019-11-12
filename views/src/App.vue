@@ -23,6 +23,8 @@ body{
 }
 .right-content {
   margin-left: 300px;
+  background: #24292e;
+  height: 100vh;
 }
 </style>
 <script lang="ts">

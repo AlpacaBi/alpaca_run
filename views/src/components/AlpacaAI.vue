@@ -35,6 +35,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, PropSync } from 'vue-property-decorator';
 import { State, Mutation } from 'vuex-class';
+import { Notification } from 'element-ui';
 import 'animate.css';
 
 interface IChatArrList {
@@ -69,6 +70,19 @@ export default class AlpacaAI extends Vue {
     if (this.chatContent === '') {
       this.AlpacaAISaid('抱歉，我没听到');
       return;
+    } else if (this.chatContent.indexOf('微信') !== -1 || this.chatContent.indexOf('wechat') !== -1) {
+      this.AlpacaAISaid('为您显示Alpaca Bi的微信二维码');
+      Notification({
+        title: '扫描二维码加好友',
+        dangerouslyUseHTMLString: true,
+        message: '<img width=300px src="https://alpaca.cdn.bcebos.com/wechat.jpg" alt="">',
+        position: 'bottom-left',
+      });
+    } else if (this.chatContent.indexOf('毕国康') !== -1 ||
+              this.chatContent.indexOf('Alpaca') !== -1 ||
+              this.chatContent.indexOf('alpaca') !== -1) {
+        this.AlpacaAISaid('正在为您跳转到Alpaca Bi个人介绍');
+        this.$router.push({name: 'info'});
     } else {
       this.VisitorSaid(this.chatContent);
       const res: any = await this.$ajax.post('/ai/text', {

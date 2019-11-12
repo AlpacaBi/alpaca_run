@@ -1,6 +1,7 @@
 package config
 
 import (
+	"alpaca_blog/config/redis"
 	"flag"
 	"log"
 	"os"
@@ -8,17 +9,21 @@ import (
 	"path"
 	"path/filepath"
 
+	"alpaca_blog/config/mysql"
+
 	jsoniter "github.com/json-iterator/go"
 )
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 type configuration struct {
-	Listen       string `json:"listen"`
-	Debug        bool   `json:"debug"`
-	LogFile      string `json:"logFile"`      //日志
-	TulingAPIKey string `json:"tulingAPIKey"` //图灵机器人APIKey
-	TulingAPIURL string `json:"tulingAPIURL"` //图灵机器人接口URL
+	Listen       string       `json:"listen"`
+	Debug        bool         `json:"debug"`
+	LogFile      string       `json:"logFile"` //日志
+	Mysql        mysql.Config `json:"mysql"`
+	Redis        redis.Config `json:"redis"`
+	TulingAPIKey string       `json:"tulingAPIKey"` //图灵机器人APIKey
+	TulingAPIURL string       `json:"tulingAPIURL"` //图灵机器人接口URL
 }
 
 //Current the current configuration
@@ -30,6 +35,24 @@ func init() {
 		":9527",
 		true,
 		"alpaca_blog.log",
+		mysql.Config{
+			"", //"127.0.0.1"
+			0,  //3306
+			"", //"root"
+			"", //""
+			"", //"alpacablog"
+			"", //"alpaca_blog_"
+			0,  //40
+			0,  //2
+			0,  //30
+		},
+		redis.Config{
+			"", //"127.0.0.1"
+			0,  //6379
+			"", //""
+			0,  //0
+			0,  //300
+		},
 		"",
 		"",
 	}

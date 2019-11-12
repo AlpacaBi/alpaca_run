@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//SetRoutes 路由初始化
-func SetRoutes() (router *gin.Engine) {
+//InitRoutes 路由初始化
+func InitRoutes() (router *gin.Engine) {
 	router = gin.Default() //获得路由实例
 	router.Use(Middleware) //中间件
 

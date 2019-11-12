@@ -2,6 +2,20 @@
     "listen":":9527",
     "debug": true,
     "logFile": "alpaca_bi.log",
+    "mysql": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "root",
+        "password": "123456",
+        "db": "alpacablog",
+        "dbprefix": "alpaca_blog_"
+    },
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "auth": "",
+        "db": 0
+    },
     "tulingAPIKey": "6c300a181aef48ef80a0113fdb03d07a",
     "tulingAPIURL":"http://openapi.tuling123.com/openapi/api/v2"
 }

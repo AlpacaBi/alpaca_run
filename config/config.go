@@ -1,15 +1,14 @@
 package config
 
 import (
-	"alpaca_blog/config/redis"
+	"alpaca_blog/lib/mysql"
+	"alpaca_blog/lib/redis"
 	"flag"
 	"log"
 	"os"
 	"os/exec"
 	"path"
 	"path/filepath"
-
-	"alpaca_blog/config/mysql"
 
 	jsoniter "github.com/json-iterator/go"
 )

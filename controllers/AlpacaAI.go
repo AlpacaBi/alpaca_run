@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"alpaca_blog/config"
-	"alpaca_blog/config/ai"
+	"alpaca_blog/lib/ai"
 
 	"github.com/gin-gonic/gin"
 )

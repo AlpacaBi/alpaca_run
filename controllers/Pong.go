@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"alpaca_blog/config/redis"
+	"alpaca_blog/lib/redis"
 	"fmt"
 	"time"
 

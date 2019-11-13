@@ -5,7 +5,7 @@
           Alpaca AI
         </div>
         <div class="close" @click="closeAiShow">
-          <img src="@/assets/images/close.svg" alt="">
+          <img :src="images.close" alt="">
         </div>
         <div class="content">
           <template v-for="(item, index) in chatlist">
@@ -22,10 +22,10 @@
         <div class="footer">
           <input v-model.trim="chatContent" placeholder="输入文字即可和Alapca AI聊天！！！" @keyup.enter="sendText"/>
           <el-tooltip content="发送文字" placement="top">
-            <img class="sendtext" @click="sendText" src="@/assets/images/sendtext.svg" alt="" >
+            <img class="sendtext" @click="sendText" :src="images.sendtext" alt="" >
           </el-tooltip>
           <el-tooltip content="发送图片" placement="top">
-            <img class="sendimg" src="@/assets/images/sendimg.svg" alt="" @click="sendImage">
+            <img class="sendimg" :src="images.sendimg" alt="" @click="sendImage">
           </el-tooltip>
         </div>
       </div>
@@ -46,6 +46,7 @@ interface IChatArrList {
 @Component
 export default class AlpacaAI extends Vue {
   @State private aiShow!: boolean;
+  @State private images!: any;
   @Mutation private closeAiShow!: () => void;
 
   private chatlist: IChatArrList[] = [];

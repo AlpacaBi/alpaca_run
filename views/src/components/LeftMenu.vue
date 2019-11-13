@@ -5,15 +5,15 @@
         <div class="name">Alpaca Bi</div>
         <div class="info">
           <div class="item">
-            <img src="@/assets/images/GitHub.png" alt="">
+            <img :src="images.GitHub" alt="">
             <a class="text" href="https://github.com/AlpacaBi" target="_blank">AlpacaBi</a>
           </div>
           <div class="item">
-            <img src="@/assets/images/mail.png" alt="">
+            <img :src="images.mail" alt="">
             <a class="text" href="mailto:let@alpaca.run">let@alpaca.run</a>
           </div>
           <div class="item">
-            <img src="@/assets/images/wechat.png" alt="">
+            <img :src="images.wechat" alt="">
             <a class="text">workbiguokang</a>
           </div>
         </div>
@@ -67,10 +67,11 @@
 
 <script lang="ts">
 import { Component,  Vue , Emit} from 'vue-property-decorator';
-import { Mutation } from 'vuex-class';
+import { State, Mutation } from 'vuex-class';
 
 @Component
 export default class LeftMenu extends Vue {
+  @State private images!: any;
   @Mutation private changeAiShow!: () => void;
 
   private handleOpen(key: any, keyPath: any) {

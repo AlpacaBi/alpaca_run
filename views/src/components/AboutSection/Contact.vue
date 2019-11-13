@@ -8,13 +8,13 @@
   <div class="cards">
     <transition mode="out-in" enter-active-class="animated rotateInDownLeft" :duration="{ enter: 1000, leave: 1000 }">
       <div class="card" v-show="show1">
-        <img src="@/assets/images/cphone.svg" alt="">
+        <img :src="images.cphone" alt="">
         <div class="text">17666503029</div>
       </div>
     </transition>
     <transition mode="out-in" enter-active-class="animated rotateInDownRight" :duration="{ enter: 1000, leave: 1000 }">
       <div class="card" v-show="show2" @click="openWechatQRCode">
-        <img src="@/assets/images/cwechat.svg" alt="">
+        <img :src="images.cwechat" alt="">
         <div class="text">workbiguokang</div>
       </div>
     </transition>
@@ -22,13 +22,13 @@
   <div class="cards">
     <transition mode="out-in" enter-active-class="animated rotateInUpLeft" :duration="{ enter: 1000, leave: 1000 }">
       <div class="card" v-show="show3">
-        <img src="@/assets/images/cgithub.svg" alt="">
+        <img :src="images.cgithub" alt="">
         <div class="text"><a class="text" href="https://github.com/AlpacaBi" target="_blank">AlpacaBi</a></div>
       </div>
     </transition>
     <transition mode="out-in" enter-active-class="animated rotateInUpRight" :duration="{ enter: 1000, leave: 1000 }">
       <div class="card" v-show="show4">
-        <img src="@/assets/images/cmail.svg" alt="">
+        <img :src="images.cmail" alt="">
         <div class="text"><a class="text" href="mailto:let@alpaca.run">let@alpaca.run</a></div>
       </div>
     </transition>
@@ -36,7 +36,7 @@
 
   <transition mode="out-in" enter-active-class="animated fadeInUpBig" :duration="{ enter: 1000, leave: 1000 }">
     <div class="mp" v-show="show5">
-      <img src="@/assets/images/wpQRCode.jpg" alt="">
+      <img :src="images.wpQRCode" alt="">
       <div class="text">可以的话，请扫码关注我的公众号</div>
     </div>
   </transition>
@@ -53,6 +53,7 @@ import { State } from 'vuex-class';
 @Component
 export default class Contact extends Vue {
   @State private contact!: any;
+  @State private images!: any;
   private show0: boolean = false;
   private show1: boolean = false;
   private show2: boolean = false;

@@ -1,8 +1,28 @@
 import avatar from '@/assets/images/avatar.jpeg';
-import location from '@/assets/images/location.svg';
-import qualifications from '@/assets/images/qualifications.svg';
-import marriage from '@/assets/images/marriage.svg';
-import workstatus from '@/assets/images/workstatus.svg';
+
+const cdnImageURL: string = 'https://cdn.alpaca.run/alpaca_blog%2Fimages%2F';
+
+export const images = {
+  // LeftMenu
+  GitHub: cdnImageURL + 'GitHub.png',
+  mail: cdnImageURL + 'mail.png',
+  wechat: cdnImageURL + 'wechat.png',
+  // AlpacaAI
+  close: cdnImageURL + 'close.svg',
+  sendtext: cdnImageURL + 'sendtext.svg',
+  sendimg: cdnImageURL + 'sendimg.svg',
+  // Info
+  location: cdnImageURL + 'location.svg',
+  qualifications: cdnImageURL + 'qualifications.svg',
+  marriage: cdnImageURL + 'marriage.svg',
+  workstatus: cdnImageURL + 'workstatus.svg',
+  // Contant
+  cphone: cdnImageURL + 'cphone.svg',
+  cwechat: cdnImageURL + 'cwechat.svg',
+  cgithub: cdnImageURL + 'cgithub.svg',
+  cmail: cdnImageURL + 'cmail.svg',
+  wpQRCode: cdnImageURL + 'wpQRCode.jpg',
+};
 
 export const info = {
   name: '毕国康',
@@ -17,19 +37,19 @@ export const info = {
   ],
   status: [
     {
-      img: location,
+      img: images.location,
       value: '广州',
     },
     {
-      img: qualifications,
+      img: images.qualifications,
       value: '本科',
     },
     {
-      img: marriage,
+      img: images.marriage,
       value: '未婚',
     },
     {
-      img: workstatus,
+      img: images.workstatus,
       value: '在职',
     },
   ],

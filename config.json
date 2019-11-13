@@ -6,15 +6,16 @@
         "host": "localhost",
         "port": 3306,
         "user": "root",
-        "password": "123456",
+        "password": "填你自己的mysql密码",
         "db": "alpacablog",
         "dbprefix": "alpaca_blog_"
     },
       "redis": {
         "host": "localhost",
         "port": 6379,
-        "auth": "",
-        "db": 0
+        "auth": "填你自己的redis密码,一般没特地设置的话密码为空",
+        "db": 0,
+        "poolSize": 300
     },
     "tulingAPIKey": "6c300a181aef48ef80a0113fdb03d07a",
     "tulingAPIURL":"http://openapi.tuling123.com/openapi/api/v2"

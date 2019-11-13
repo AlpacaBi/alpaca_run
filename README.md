@@ -81,3 +81,10 @@
     "tulingAPIURL":"http://openapi.tuling123.com/openapi/api/v2"
 }
 ```
+
+## 联系我
+如果你遇到问题，或者想交流技术，可以加我微信或者电报
+<p align="left">
+	<img src="https://alpaca.cdn.bcebos.com/wechat.jpg" alt="wechat"  width="250">
+</p>
+

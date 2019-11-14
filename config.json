@@ -7,8 +7,8 @@
         "port": 3306,
         "user": "root",
         "password": "填你自己的mysql密码",
-        "db": "alpacablog",
-        "dbprefix": "alpaca_blog_"
+        "db": "填你的数据库名",
+        "dbprefix": "自定义替换表头，会替换成#__"
     },
       "redis": {
         "host": "localhost",

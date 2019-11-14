@@ -2,7 +2,8 @@ package main
 
 import (
 	"alpaca_blog/config"
-	"alpaca_blog/config/redis"
+	"alpaca_blog/lib/mysql"
+	"alpaca_blog/lib/redis"
 	"alpaca_blog/route"
 	"net/http"
 
@@ -20,7 +21,7 @@ func main() {
 	//读取配置文件
 	config.LoadConfig()
 	//初始化Mysql
-	//mysql.InitMYSQL(config.Current.Mysql)
+	mysql.InitMYSQL(config.Current.Mysql)
 	//初始化Redis
 	redis.InitRedis(config.Current.Redis)
 	//初始化api路由

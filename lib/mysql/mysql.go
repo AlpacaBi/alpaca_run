@@ -1,12 +1,16 @@
 package mysql
 
 import (
+	"fmt"
+	"log"
+	"strings"
+	"sync"
+	"time"
+
 	_ "github.com/go-sql-driver/mysql" //import mysql impolementation for sql
 	"github.com/jmoiron/sqlx"
-	"hz.com/golib/mysql"
+	"github.com/jmoiron/sqlx/reflectx"
 )
-
-var s mysql.IDB
 
 //Config Mysql的配置
 type Config struct {
@@ -21,11 +25,68 @@ type Config struct {
 	MaxOpenConn  int    `json:"maxopenconn"`
 }
 
+//IDB 数据库接口
+type IDB interface {
+	GetDB() *sqlx.DB
+	Prefix(str string) string
+}
+
+type sqlServer struct {
+	Config Config
+	DB     *sqlx.DB
+}
+
+//init 初始化sql
+func (sql *sqlServer) init(config Config) error {
+	var dbonce sync.Once
+	var db *sqlx.DB
+	var err error
+	dbonce.Do(func() {
+		db, err = sqlx.Open(
+			"mysql",
+			fmt.Sprintf(
+				"%s:%s@tcp(%s:%d)/%s",
+				config.User,
+				config.Password,
+				config.Host,
+				config.Port,
+				config.Db,
+			),
+		)
+		if err != nil {
+			log.Printf("get mysql database error: %s", err)
+		} else {
+			db.SetConnMaxLifetime(time.Duration(config.ConnLifeTime) * time.Second)
+			db.SetMaxIdleConns(config.MaxIdleConn)
+			db.SetMaxOpenConns(config.MaxOpenConn)
+			db.Mapper = reflectx.NewMapperFunc("json", strings.ToLower)
+		}
+	})
+
+	sql.DB = db
+	return err
+}
+
+//GetDB GetDB
+func (sql *sqlServer) GetDB() *sqlx.DB {
+	return sql.DB
+}
+
+//Prefix change the relative sql to real sql with prefix
+func (sql sqlServer) Prefix(str string) string {
+	return strings.Replace(str, "#__", sql.Config.Dbprefix, -1)
+}
+
+var s IDB
+
 //InitSQL 初始化数据库
-func InitMYSQL(config mysql.Config) {
-	ss, er := mysql.New(config)
-	if er != nil {
-		panic(er)
+func InitMYSQL(config Config) {
+	ss := &sqlServer{
+		Config: config,
+	}
+	err := ss.init(config)
+	if err != nil {
+		fmt.Println(err)
 	}
 	s = ss
 }
@@ -35,12 +96,7 @@ func GetDB() *sqlx.DB {
 	return s.GetDB()
 }
 
-//Prefix change the relative sql to real sql with prefix
+//改sql表前缀
 func Prefix(sql string) string {
 	return s.Prefix(sql)
-}
-
-//UnPrefix change the real sql with prefix to relative one
-func UnPrefix(sql string) string {
-	return s.UnPrefix(sql)
 }

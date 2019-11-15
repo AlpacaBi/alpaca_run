@@ -2,7 +2,7 @@
   <div class="left-nav">
       <div class="avator">
         <img src="@/assets/images/avatar.jpeg" alt="" title="点击唤醒人工智能" @click="changeAiShow">
-        <div class="name">Alpaca Bi</div>
+        <div class="name" @click="openLoginDialogShow">Alpaca Bi</div>
         <div class="info">
           <div class="item">
             <img :src="images.GitHub" alt="">
@@ -73,6 +73,7 @@ import { State, Mutation } from 'vuex-class';
 export default class LeftMenu extends Vue {
   @State private images!: any;
   @Mutation private changeAiShow!: () => void;
+  @Mutation private openLoginDialogShow!: () => void;
 
   private handleOpen(key: any, keyPath: any) {
     console.log(key, keyPath);

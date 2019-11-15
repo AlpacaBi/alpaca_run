@@ -14,6 +14,7 @@ interface IAnimateOptions {
 
 interface IState {
   aiShow: boolean;
+  loginDialogShow: boolean;
   num: number;
   routes: any;
   animateOptions: IAnimateOptions;
@@ -27,6 +28,7 @@ interface IState {
 
 const State: IState = {
   aiShow: false,
+  loginDialogShow: false,
   num: 0,
   routes: router,
   animateOptions: {
@@ -56,11 +58,17 @@ export default new Vuex.Store({
     changeAiShow(state) {
       state.aiShow = !state.aiShow;
     },
+    openAiShow(state) {
+      state.aiShow = true;
+    },
     closeAiShow(state) {
       state.aiShow = false;
     },
-    openAiShow(state) {
-      state.aiShow = true;
+    openLoginDialogShow(state) {
+      state.loginDialogShow = true;
+    },
+    closeLoginDialogShow(state) {
+      state.loginDialogShow = false;
     },
     // 改变切换路由页面的过度动画
     changeAnimateDirection(state, data) {

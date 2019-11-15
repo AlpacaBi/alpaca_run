@@ -6,6 +6,8 @@
     <div class="right-content"><router-view/></div>
 
     <AlpacaAI/>
+    
+    <LoginDialog/>
 
   </div>
 </template>
@@ -32,16 +34,22 @@ body{
   import { State, Mutation } from 'vuex-class';
   import LeftMenu from '@/components/LeftMenu.vue';
   import AlpacaAI from '@/components/AlpacaAI.vue';
+  import LoginDialog from '@/components/LoginDialog.vue';
 
   @Component({
     components: {
       LeftMenu,
       AlpacaAI,
+      LoginDialog,
     },
   })
   export default class APP extends Vue {
     @State private aiShow!: boolean;
     @Mutation private openAiShow!: () => void;
+
+    private dialogFormVisible: boolean = false;
+
+
 
     private created() {
       setTimeout(() => {

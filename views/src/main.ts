@@ -13,6 +13,7 @@ import {
   CarouselItem,
   Tooltip,
   Notification,
+  Dialog,
 } from 'element-ui';
 
 Vue.component(Button.name, Button);
@@ -23,6 +24,7 @@ Vue.component(Carousel.name, Carousel);
 Vue.component(CarouselItem.name, CarouselItem);
 Vue.component(Tooltip.name, Tooltip);
 Vue.component(Notification.name, Notification);
+Vue.component(Dialog.name, Dialog);
 
 // 封装好了axios，并接入Vue的原型链，从而在任何地方都能使用
 Vue.prototype.$ajax = service;

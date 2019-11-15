@@ -22,6 +22,7 @@ func AIText(c *gin.Context) {
 //AIImage 用于图像AI处理
 func AIImage(c *gin.Context) {
 	c.JSON(200, gin.H{
+		"status":  "ok",
 		"message": "pong",
 	})
 	return

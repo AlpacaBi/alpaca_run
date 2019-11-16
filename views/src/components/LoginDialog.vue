@@ -24,6 +24,7 @@ import { State, Mutation } from 'vuex-class';
 
 @Component
 export default class LoginDialog extends Vue {
+  //单纯为了刷绿点
   @State private loginDialogShow!: boolean;
   @Mutation private closeLoginDialogShow!: () => void;
 

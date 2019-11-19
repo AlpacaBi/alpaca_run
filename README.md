@@ -8,6 +8,7 @@
 - Gin
 - Redis
 - MySQL
+- JWT
 - Graphql（暂时没上）
 
 ## 如何运行

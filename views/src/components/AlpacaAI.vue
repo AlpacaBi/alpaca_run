@@ -11,7 +11,7 @@
           <template v-for="(item, index) in chatlist">
           <div :key="index">
             <div v-if="item.type == 0">
-              <div class="left-bubble">{{item.content}}</div>
+              <div class="left-bubble" v-html="item.content">{{item.content}}</div>
             </div>
             <div v-else>
               <div class="right-bubble">{{item.content}}</div>

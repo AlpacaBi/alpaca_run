@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import router from './router';
-import { images, info, skills, profiles,  contact } from './data/data';
+import { images, info, skills, profiles } from './data/data';
 
 Vue.use(Vuex);
 
@@ -23,7 +23,6 @@ interface IState {
   info: any;
   skills: any;
   profiles: any;
-  contact: any;
 }
 
 const State: IState = {
@@ -42,7 +41,6 @@ const State: IState = {
   info,
   skills,
   profiles,
-  contact,
 };
 
 

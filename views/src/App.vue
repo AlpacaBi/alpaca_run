@@ -49,8 +49,6 @@ body{
 
     private dialogFormVisible: boolean = false;
 
-
-
     private created() {
       setTimeout(() => {
         this.openAiShow();

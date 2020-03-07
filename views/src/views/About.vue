@@ -27,8 +27,8 @@ import 'animate.css';
 export default class About extends Vue {
   @State private animateOptions: any;
 
-  @Action private next!: (x: string | undefined) => any;
-  @Action private last!: (x: string | undefined) => any;
+  @Action private next!: (x: string | undefined | null ) => any;
+  @Action private last!: (x: string | undefined | null ) => any;
   @Action private clickRouteChange!: () => void;
 
   private lastScroll: number = 0;
@@ -43,12 +43,12 @@ export default class About extends Vue {
     // console.log('合法的滚动')
     // 判断滚动方向进行操作
     if (event.deltaY > 0) {
-      const presentName: string | undefined = this.$route.name;
+      const presentName: string | undefined | null = this.$route.name;
       this.next(presentName).then((nextPageName: string)  => {
         this.$router.push({name: nextPageName});
       });
     } else {
-      const presentName: string | undefined = this.$route.name;
+      const presentName: string | undefined | null = this.$route.name;
       this.last(presentName).then((lastPageName: string) => {
         this.$router.push({name: lastPageName});
       });

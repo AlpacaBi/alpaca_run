@@ -14,7 +14,7 @@
           </div>
           <div class="item">
             <img :src="images.wechat" alt="">
-            <a class="text">workbiguokang</a>
+            <a class="text" @click="openWechatQRCode">workbiguokang</a>
           </div>
         </div>
       </div>
@@ -67,6 +67,7 @@
 
 <script lang="ts">
 import { Component,  Vue , Emit} from 'vue-property-decorator';
+import { Notification } from 'element-ui';
 import { State, Mutation } from 'vuex-class';
 
 @Component
@@ -80,6 +81,15 @@ export default class LeftMenu extends Vue {
   }
   private handleClose(key: any, keyPath: any) {
     console.log(key, keyPath);
+  }
+
+  private openWechatQRCode() {
+    Notification({
+      title: '扫描二维码加好友',
+      dangerouslyUseHTMLString: true,
+      message: '<img width=300px src="https://alpaca.cdn.bcebos.com/wechat.jpg" alt="">',
+      position: 'bottom-left',
+    });
   }
 }
 </script>

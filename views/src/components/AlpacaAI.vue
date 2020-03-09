@@ -8,13 +8,16 @@
           <img :src="images.close" alt="">
         </div>
         <div class="content">
+
+          
+      
           <template v-for="(item, index) in chatlist">
           <div :key="index">
             <div v-if="item.type == 0">
-              <div class="left-bubble" v-html="item.content">{{item.content}}</div>
+              <div class="left-bubble" v-html="item.content"></div>
             </div>
             <div v-else>
-              <div class="right-bubble">{{item.content}}</div>
+              <div class="right-bubble"  v-html="item.content"></div>
             </div>
           </div>
         </template>
@@ -25,7 +28,10 @@
             <img class="sendtext" @click="sendText" :src="images.sendtext" alt="" >
           </el-tooltip>
           <el-tooltip content="发送图片" placement="top">
-            <img class="sendimg" :src="images.sendimg" alt="" @click="sendImage">
+            <div class="file-upload">
+            <img class="sendimg" :src="images.sendimg" alt="">
+            <input type="file" class="uploadimg" @change="onFileChange">
+            </div>
           </el-tooltip>
         </div>
       </div>
@@ -100,10 +106,41 @@ export default class AlpacaAI extends Vue {
   private sendImage() {
     this.AlpacaAISaid('图片识别功能开发中...');
   }
+
+  private async onFileChange(event: any) {
+    const self = this;
+    const reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (e: any) => {
+        const base64 = e.target.result;
+        const arr = base64.split(',')[1];
+        self.$ajax.post('/ai/image', {
+          imgBase64: arr,
+        }).then((res: any) => {
+          const result = res.data.message.result;
+          let content: string = '<img width="200px" src="' + base64 + '"/><br/>' + '识别结果：</br>';
+          for (let i = 0; i < result.length; i++) {
+            if (i === 0) {
+              content = `${content}<b style="color:red">(${(result[i].score * 100).toFixed(2)}%)${result[i].keyword}</b></br>`;
+            } else {
+              content = `${content}(${(result[i].score * 100).toFixed(2)}%)${result[i].keyword}</br>`;
+            }
+          }
+          if (JSON.stringify(result[0].baike_info) !== '{}') {
+            content = `${content}------------------------</br>${result[0].baike_info.description}`;
+          }
+          self.AlpacaAISaid(content);
+        });
+    };
+  }
+
   private created() {
     setTimeout(() => {
       this.AlpacaAISaid('你好啊，我是Alpaca AI,一个人工智能，你可以打字和我聊天！！！！');
-    }, 3500);
+        setTimeout(() => {
+        this.AlpacaAISaid('我同时也具备了图像识别功能，你可以在右下角发图给我识别！！！！');
+      }, 2000);
+    }, 2000);
   }
 }
 </script>
@@ -229,16 +266,29 @@ export default class AlpacaAI extends Vue {
     .sendtext:active{
       transform: scale(0.9)
     }
-    .sendimg{
+    .file-upload{
+      position: relative;
       display: inline-block;
       vertical-align: bottom;
-      margin-left: 7px;
-      height: 34px;
-      width: 34px;
-      cursor: pointer;
-    }
-    .sendimg:active{
-      transform: scale(0.9)
+      .sendimg{
+        display: inline-block;
+        vertical-align: bottom;
+        margin-left: 7px;
+        height: 34px;
+        width: 34px;
+        cursor: pointer;
+      }
+      .sendimg:active{
+        transform: scale(0.9)
+      }
+      .uploadimg{
+        background-color: transparent;
+        position: absolute;
+        width: 40px;
+        top: -6px;
+        padding-left: 77px;
+        right: -94px;
+      }
     }
   }
 }

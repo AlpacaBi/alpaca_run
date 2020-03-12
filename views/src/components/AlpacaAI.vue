@@ -138,9 +138,12 @@ export default class AlpacaAI extends Vue {
     setTimeout(() => {
       this.AlpacaAISaid('你好啊，我是Alpaca AI,一个人工智能，你可以打字和我聊天！！！！');
         setTimeout(() => {
-        this.AlpacaAISaid('我同时也具备了图像识别功能，你可以在右下角发图给我识别！！！！');
-      }, 2000);
-    }, 2000);
+          this.AlpacaAISaid('我同时也具备了图像识别功能，你可以在右下角发图给我识别！！！！');
+          setTimeout(() => {
+            this.AlpacaAISaid('请文明发言哦！！！！');
+          }, 2000);
+        }, 2000);
+    }, 3500);
   }
 }
 </script>

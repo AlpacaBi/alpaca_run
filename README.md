@@ -78,8 +78,14 @@
         "db": 0,
         "poolSize": 300
     },
-    "tulingAPIKey": "填你自己的图灵机器人APIKey，去官网注册就能免费拿",
-    "tulingAPIURL":"http://openapi.tuling123.com/openapi/api/v2"
+    "tuling":{
+        "apiKey":"填你自己的图灵机器人APIKey，去官网注册就能免费拿",
+        "apiURL":"http://openapi.tuling123.com/openapi/api/v2"
+    },
+    "xiaosi":{
+        "appID":"填你自己的小思机器人AppID，去官网注册就能免费拿",
+        "apiURL":"https://api.ownthink.com/bot"
+    }
 }
 ```
 

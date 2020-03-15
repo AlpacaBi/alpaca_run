@@ -2,10 +2,12 @@ package ai
 
 import (
 	"alpaca_blog/config"
+	"alpaca_blog/lib/redis"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"time"
 
 	sjson "github.com/bitly/go-simplejson"
 )
@@ -41,6 +43,19 @@ func NewBaiduAI() *baiduAI {
 
 // getAccessToken 获取AccessToken
 func (baiduAI *baiduAI) getAccessToken() (accessToken string, err error) {
+
+	//从redis找有没有access_token，如果没有从网络请求access_token
+	//access_token请求回来后，存在redis里面
+	value, err := redis.Get("baidu_ai_access_token")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	if value != "" {
+		accessToken = value
+		return
+	}
+
+	//能走到这里表示redis没有access_token，从网络请求access_token
 	accessTokenURL := fmt.Sprintf("%s?grant_type=client_credentials&client_id=%s&client_secret=%s", baiduAI.BaiduAPI.AccessToken, baiduAI.APIkey, baiduAI.SecretKey)
 
 	req, err := http.NewRequest("GET", accessTokenURL, nil)
@@ -63,6 +78,9 @@ func (baiduAI *baiduAI) getAccessToken() (accessToken string, err error) {
 	}
 
 	accessToken = info.Get("access_token").MustString("")
+
+	//把access_token存进redis里面，有效期24个小时
+	redis.Set("baidu_ai_access_token", accessToken, 24*time.Hour)
 
 	return
 }

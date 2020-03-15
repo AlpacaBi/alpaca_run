@@ -18,7 +18,7 @@ import (
 // AIText 用于文字AI处理
 func AIText(c *gin.Context) {
 	text := c.Request.FormValue("text")
-	robot := ai.NewRobot(config.Current.TulingAPIKey)
+	robot := ai.NewXiaosiRobot(config.Current.Xiaosi.AppID)
 
 	dirtyWord := [...]string{
 		"你是不是性無能所以在網上自我高潮找存在感",
@@ -108,7 +108,7 @@ func AIText(c *gin.Context) {
 
 	var msg string
 	if info2.Get("conclusionType").MustInt() == 1 {
-		msg = robot.GetReplyMsg(text, "1")
+		msg = robot.GetXiaosiReplyMsg(text, "1")
 	} else {
 
 		msg = "<b>检测到你的发言带有恶意：</b><br/>"

@@ -16,13 +16,26 @@ import (
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 type configuration struct {
-	Listen       string       `json:"listen"`
-	Debug        bool         `json:"debug"`
-	LogFile      string       `json:"logFile"` //日志
-	Mysql        mysql.Config `json:"mysql"`
-	Redis        redis.Config `json:"redis"`
-	TulingAPIKey string       `json:"tulingAPIKey"` //图灵机器人APIKey
-	TulingAPIURL string       `json:"tulingAPIURL"` //图灵机器人接口URL
+	Listen  string       `json:"listen"`
+	Debug   bool         `json:"debug"`
+	LogFile string       `json:"logFile"` //日志
+	Mysql   mysql.Config `json:"mysql"`
+	Redis   redis.Config `json:"redis"`
+	Tuling  Tuling       `json:"tuling"` //图灵机器人
+	Xiaosi  Xiaosi       `json:"xiaosi"` //小思机器人
+
+}
+
+//Tuling 图灵机器人参数
+type Tuling struct {
+	APIKey string `json:"apiKey"` //图灵机器人APIKey
+	APIURL string `json:"apiURL"` //图灵机器人接口URL
+}
+
+//Xiaosi 小思机器人参数
+type Xiaosi struct {
+	AppID  string `json:"appID"`  //小思机器人APIKey
+	APIURL string `json:"apiURL"` //小思机器人接口URL
 }
 
 //Current the current configuration
@@ -52,8 +65,14 @@ func init() {
 			0,
 			0,
 		},
-		"",
-		"",
+		Tuling{
+			"",
+			"",
+		},
+		Xiaosi{
+			"",
+			"",
+		},
 	}
 
 	basePath, _ := exec.LookPath(os.Args[0])

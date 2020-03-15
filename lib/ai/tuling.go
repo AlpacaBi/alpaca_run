@@ -26,7 +26,7 @@ type tulingReqData struct {
 }
 
 // post 给Robot对象封装好post
-func (r *Robot) post(url string, para []byte) ([]byte, error) {
+func (r *tulingRobot) post(url string, para []byte) ([]byte, error) {
 	body := bytes.NewBuffer(para)
 	req, err := http.NewRequest("POST", url, body)
 	if err != nil {
@@ -42,24 +42,24 @@ func (r *Robot) post(url string, para []byte) ([]byte, error) {
 	return ioutil.ReadAll(resp.Body)
 }
 
-// Robot 机器人对象结构体
-type Robot struct {
+// tulingRobot 图灵机器人对象结构体
+type tulingRobot struct {
 	APIkey string
 	APIURL string
 	rnet   *http.Client
 }
 
-// NewRobot 初始化机器人
-func NewRobot(apikey string) *Robot {
-	return &Robot{
+// NewRobot 初始化图灵机器人
+func NewTulingRobot(apikey string) *tulingRobot {
+	return &tulingRobot{
 		APIkey: apikey,
-		APIURL: config.Current.TulingAPIURL,
+		APIURL: config.Current.Tuling.APIURL,
 		rnet:   &http.Client{},
 	}
 }
 
 // GetReplyMsg 正式调用图灵机器人接口
-func (r *Robot) GetReplyMsg(text string, userid string) string {
+func (r *tulingRobot) GetTulingReplyMsg(text string, userid string) string {
 	var para tulingReqData
 	para.ReqType = 0
 	para.Perception.InputText.Text = text

@@ -21,8 +21,9 @@ type configuration struct {
 	LogFile string       `json:"logFile"` //日志
 	Mysql   mysql.Config `json:"mysql"`
 	Redis   redis.Config `json:"redis"`
-	Tuling  Tuling       `json:"tuling"` //图灵机器人
-	Xiaosi  Xiaosi       `json:"xiaosi"` //小思机器人
+	Tuling  Tuling       `json:"tuling"`  //图灵机器人
+	Xiaosi  Xiaosi       `json:"xiaosi"`  //小思机器人
+	BaiduAI BaiduAI      `json:"baiduAI"` //小思机器人
 
 }
 
@@ -36,6 +37,12 @@ type Tuling struct {
 type Xiaosi struct {
 	AppID  string `json:"appID"`  //小思机器人APIKey
 	APIURL string `json:"apiURL"` //小思机器人接口URL
+}
+
+//BaiduAI 百度AI机器人参数
+type BaiduAI struct {
+	APIKey    string `json:"apiKey"`    //百度AI APIKey
+	SecretKey string `json:"secretKey"` //百度AI SecretKey
 }
 
 //Current the current configuration
@@ -70,6 +77,10 @@ func init() {
 			"",
 		},
 		Xiaosi{
+			"",
+			"",
+		},
+		BaiduAI{
 			"",
 			"",
 		},

@@ -49,7 +49,7 @@ type tulingRobot struct {
 	rnet   *http.Client
 }
 
-// NewRobot 初始化图灵机器人
+// NewTulingRobot 初始化图灵机器人
 func NewTulingRobot(apikey string) *tulingRobot {
 	return &tulingRobot{
 		APIkey: apikey,

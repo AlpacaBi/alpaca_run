@@ -71,7 +71,7 @@
         "db": "alpacablog",
         "dbprefix": "alpaca_blog_"
     },
-      "redis": {
+    "redis": {
         "host": "localhost",
         "port": 6379,
         "auth": "填你自己的redis密码,一般没特地设置的话密码为空",
@@ -85,6 +85,10 @@
     "xiaosi":{
         "appID":"填你自己的小思机器人AppID，去官网注册就能免费拿",
         "apiURL":"https://api.ownthink.com/bot"
+    },
+    "baiduAI":{
+        "apiKey":"填你自己百度AI的APIKey，去官网注册就能免费拿",
+        "secretKey":"填你自己百度AI的SecretKey，去官网注册就能免费拿"
     }
 }
 ```

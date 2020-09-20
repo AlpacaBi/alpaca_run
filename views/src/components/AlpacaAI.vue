@@ -1,16 +1,19 @@
 <template>
-  <transition enter-active-class="animated slideInRight" leave-active-class="animated slideOutRight">
+  <div>
+    <transition enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown">
+      <div class="ai-button" @click="ping" v-show="!aiShow">
+        <div class="title">Alpaca AI</div>
+      </div>
+    </transition>
+    <transition enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown">
       <div class="ai" v-show="aiShow">
         <div class="title" @click="ping">
           Alpaca AI
         </div>
-        <div class="close" @click="closeAiShow">
+        <div class="close" @click="closeAiShow" v-show="aiShow">
           <img :src="images.close" alt="">
         </div>
         <div class="content">
-
-          
-      
           <template v-for="(item, index) in chatlist">
           <div :key="index">
             <div v-if="item.type == 0">
@@ -20,7 +23,7 @@
               <div class="right-bubble"  v-html="item.content"></div>
             </div>
           </div>
-        </template>
+          </template>
         </div>
         <div class="footer">
           <input v-model.trim="chatContent" placeholder="输入文字即可和Alapca AI聊天！！！" @keyup.enter="sendText"/>
@@ -36,6 +39,7 @@
         </div>
       </div>
     </transition>
+  </div>
 </template>
 
 <script lang="ts">
@@ -54,11 +58,13 @@ export default class AlpacaAI extends Vue {
   @State private aiShow!: boolean;
   @State private images!: any;
   @Mutation private closeAiShow!: () => void;
+  @Mutation private openAiShow!: () => void;
 
   private chatlist: IChatArrList[] = [];
   private chatContent: string = '';
 
   private async ping() {
+    this.openAiShow();
     const res: any = await this.$ajax.get('/ping');
     console.log(res);
   }
@@ -137,12 +143,12 @@ export default class AlpacaAI extends Vue {
   private created() {
     setTimeout(() => {
       this.AlpacaAISaid('你好啊，我是Alpaca AI,一个人工智能，你可以打字和我聊天！！！！');
+      setTimeout(() => {
+        this.AlpacaAISaid('我同时也具备了图像识别功能，你可以在右下角发图给我识别！！！！');
         setTimeout(() => {
-          this.AlpacaAISaid('我同时也具备了图像识别功能，你可以在右下角发图给我识别！！！！');
-          setTimeout(() => {
-            this.AlpacaAISaid('请文明发言哦！！！！');
-          }, 2000);
+          this.AlpacaAISaid('请文明发言哦！！！！');
         }, 2000);
+      }, 2000);
     }, 3500);
   }
 }
@@ -154,6 +160,7 @@ export default class AlpacaAI extends Vue {
   display: inline-block;
   margin-left: 300px
 }
+
 .ai{
   position: fixed;
   z-index: 2;
@@ -166,30 +173,33 @@ export default class AlpacaAI extends Vue {
   opacity:1;
   .title{
     text-align: left;
-    background: #545c64;
+    background: #ff9900;
     color: white;
-    height: 42px;
-    font-size: 25px;
-    padding-top: 10px;
+    height: 60px;
+    font-size: 30px;
+    padding-top: 15px;
     padding-left: 20px;
     position: absolute;
     width: 100%;
+    font-weight: 700;
+    cursor: pointer;
   }
   .close{
     width: 35px;
     height: 35px;
     position: absolute;
-    right: 7px;
-    top: 8px;
+    right: 12px;
+    top: 12px;
     cursor: pointer;
   }
   .content{
     width: 100%;
     overflow: auto;
-    top: 52px;
+    top: 60px;
     position: absolute;
     z-index: 10;
     bottom: 55px;
+    background: #1b1b1b;
     padding-bottom: 80px;
     .left-bubble{
       float: left;
@@ -197,9 +207,9 @@ export default class AlpacaAI extends Vue {
       text-align: left;
       padding: 10px;
       margin: 10px;
-      color: white;
+      color: black;
       word-break:break-all;
-      background-color: grey;
+      background-color: #ff9900;
       border-radius: 8px;
       -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
       -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
@@ -212,7 +222,8 @@ export default class AlpacaAI extends Vue {
       text-align: left;
       padding: 10px;
       margin: 10px;
-      color: black;
+      color: white;
+      background-color: grey;
       word-break:break-all;
       border-radius: 8px;
       -webkit-box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.05);
@@ -243,7 +254,7 @@ export default class AlpacaAI extends Vue {
     bottom: 0px;
     width: 100%;
     height: 55px;
-    background: grey;
+    background: #ff9900;
     text-align: left;
     input{
       display: inline-block;
@@ -293,6 +304,28 @@ export default class AlpacaAI extends Vue {
         right: -94px;
       }
     }
+  }
+}
+
+.ai-button{
+  position: fixed;
+  z-index: 3;
+  width: 450px;
+  bottom: 0;
+  right: 0;
+  height: 60px;
+  cursor: pointer;
+  .title{
+    text-align: left;
+    background: #ff9900;
+    color: white;
+    height: 60px;
+    font-size: 30px;
+    padding-top: 15px;
+    padding-left: 20px;
+    position: absolute;
+    width: 100%;
+    font-weight: 700;
   }
 }
 </style>

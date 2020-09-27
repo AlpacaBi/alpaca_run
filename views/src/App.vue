@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <audio style="display:none" src="" controls id="sound"></audio>
 
     <!-- <LeftMenu/> -->
     <TopBar/>
@@ -103,6 +104,30 @@ body{
       setTimeout(() => {
         this.openAiShow();
       }, 2000);
+
+      const arr: string[] = [
+        '帕秋莉~GO！',
+        'ASS WE CAN！！',
+        'boy next door',
+        'f♂ck y♂u',
+        'Oh！~YES,SIR♂',
+        'OH~卖箫的~',
+        '啊？乖♂乖♂站♂好',
+        '啊？幻想乡~',
+        '啊啊啊啊啊！！',
+        '奥义很爽',
+        '乖♂乖♂站♂好',
+      ];
+
+      document.onclick = () => {
+          const soundID = Math.floor(Math.random() * arr.length);
+          console.log(arr[soundID]);
+          const url = `https://alpaca.cdn.bcebos.com/zhexue/${soundID}.mp3`;
+          const sound: any = document.getElementById('sound');
+          sound.src = url;
+          sound.play();
+      };
     }
+
   }
 </script>

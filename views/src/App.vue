@@ -122,6 +122,10 @@ body{
       document.onclick = () => {
           const soundID = Math.floor(Math.random() * arr.length);
           console.log(arr[soundID]);
+          document.title = arr[soundID];
+          setTimeout( () => {
+            document.title = 'Free Technology Blog & Alpaca Bi Website';
+          }, 3000);
           const url = `https://alpaca.cdn.bcebos.com/zhexue/${soundID}.mp3`;
           const sound: any = document.getElementById('sound');
           sound.src = url;

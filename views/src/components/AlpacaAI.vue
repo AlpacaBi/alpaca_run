@@ -156,176 +156,346 @@ export default class AlpacaAI extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.right-content{
-  display: inline-block;
-  margin-left: 300px
-}
 
-.ai{
-  position: fixed;
-  z-index: 2;
-  width: 450px;
-  top: 0;
-  right: 0;
-  height:100vh;
-  background:rgba(255,255,255,1);
-  box-shadow:-10px 0px 10px rgba(0,0,0,0.05);
-  opacity:1;
-  .title{
-    text-align: left;
-    background: #ff9900;
-    color: white;
-    height: 60px;
-    font-size: 30px;
-    padding-top: 15px;
-    padding-left: 20px;
-    position: absolute;
-    width: 100%;
-    font-weight: 700;
-    cursor: pointer;
-  }
-  .close{
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    right: 12px;
-    top: 12px;
-    cursor: pointer;
-  }
-  .content{
-    width: 100%;
-    overflow: auto;
-    top: 60px;
-    position: absolute;
-    z-index: 10;
-    bottom: 55px;
-    background: #1b1b1b;
-    padding-bottom: 80px;
-    .left-bubble{
-      float: left;
-      width: 300px;
-      text-align: left;
-      padding: 10px;
-      margin: 10px;
-      color: black;
-      word-break:break-all;
-      background-color: #ff9900;
-      border-radius: 8px;
-      -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
-      -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
-      -o-box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
-    }
-    .right-bubble{
-      float: right;
-      width: 300px;
-      text-align: left;
-      padding: 10px;
-      margin: 10px;
-      color: white;
-      background-color: grey;
-      word-break:break-all;
-      border-radius: 8px;
-      -webkit-box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.05);
-      box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.05);
-      -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
-      -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
-      -o-box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
-    }
-  }
-  .content::-webkit-scrollbar {/*滚动条整体样式*/
-    margin-right: 20px;
-    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
-    height: 4px;
-  }
-  .content::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
-      border-radius: 2px;
-      --webkit-box-shadow: inset 0 0 5px grey;
-      background:rgba(239,239,239,1);
-  }
-  .content::-webkit-scrollbar-track {/*滚动条里面轨道*/
-      --webkit-box-shadow: inset 0 0 5px transparent;
-      border-radius: 0;
-      background: transparent;
-  }
-  .footer{
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 55px;
-    background: #ff9900;
-    text-align: left;
-    input{
-      display: inline-block;
-      width: 270px;
-      height: 32px;
-      border-radius: 6px;
-      margin-top: 11px;
-      margin-left: 40px;
-      outline: none;
-      border: none;
-      font-size: 12px;
-      padding-right: 10px;
-      padding-left: 10px;
-    }
-    .sendtext{
-      display: inline-block;
-      vertical-align: bottom;
-      margin-left: 7px;
-      height: 30px;
-      width: 34px;
-      cursor: pointer;
-    }
-    .sendtext:active{
-      transform: scale(0.9)
-    }
-    .file-upload{
-      position: relative;
-      display: inline-block;
-      vertical-align: bottom;
-      .sendimg{
-        display: inline-block;
-        vertical-align: bottom;
-        margin-left: 7px;
-        height: 34px;
-        width: 34px;
+@media screen and (min-width: 769px){
+    .ai{
+      position: fixed;
+      z-index: 2;
+      width: 450px;
+      top: 0;
+      right: 0;
+      height:100vh;
+      background:rgba(255,255,255,1);
+      box-shadow:-10px 0px 10px rgba(0,0,0,0.05);
+      opacity:1;
+      .title{
+        text-align: left;
+        background: #ff9900;
+        color: white;
+        height: 60px;
+        font-size: 30px;
+        padding-top: 15px;
+        padding-left: 20px;
+        position: absolute;
+        width: 100%;
+        font-weight: 700;
         cursor: pointer;
       }
-      .sendimg:active{
-        transform: scale(0.9)
-      }
-      .uploadimg{
-        background-color: transparent;
+      .close{
+        width: 35px;
+        height: 35px;
         position: absolute;
-        width: 40px;
-        top: -6px;
-        padding-left: 77px;
-        right: -94px;
+        right: 12px;
+        top: 12px;
+        cursor: pointer;
+      }
+      .content{
+        width: 100%;
+        overflow: auto;
+        top: 60px;
+        position: absolute;
+        z-index: 10;
+        bottom: 55px;
+        background: #1b1b1b;
+        padding-bottom: 80px;
+        .left-bubble{
+          float: left;
+          width: 300px;
+          text-align: left;
+          padding: 10px;
+          margin: 10px;
+          color: black;
+          word-break:break-all;
+          background-color: #ff9900;
+          border-radius: 8px;
+          -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          -o-box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+        }
+        .right-bubble{
+          float: right;
+          width: 300px;
+          text-align: left;
+          padding: 10px;
+          margin: 10px;
+          color: white;
+          background-color: grey;
+          word-break:break-all;
+          border-radius: 8px;
+          -webkit-box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.05);
+          box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.05);
+          -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          -o-box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+        }
+      }
+      .content::-webkit-scrollbar {/*滚动条整体样式*/
+        margin-right: 20px;
+        width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 4px;
+      }
+      .content::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+          border-radius: 2px;
+          --webkit-box-shadow: inset 0 0 5px grey;
+          background:rgba(239,239,239,1);
+      }
+      .content::-webkit-scrollbar-track {/*滚动条里面轨道*/
+          --webkit-box-shadow: inset 0 0 5px transparent;
+          border-radius: 0;
+          background: transparent;
+      }
+      .footer{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 55px;
+        background: #ff9900;
+        text-align: left;
+        input{
+          display: inline-block;
+          width: 270px;
+          height: 32px;
+          border-radius: 6px;
+          margin-top: 11px;
+          margin-left: 40px;
+          outline: none;
+          border: none;
+          font-size: 12px;
+          padding-right: 10px;
+          padding-left: 10px;
+        }
+        .sendtext{
+          display: inline-block;
+          vertical-align: bottom;
+          margin-left: 7px;
+          height: 30px;
+          width: 34px;
+          cursor: pointer;
+        }
+        .sendtext:active{
+          transform: scale(0.9)
+        }
+        .file-upload{
+          position: relative;
+          display: inline-block;
+          vertical-align: bottom;
+          .sendimg{
+            display: inline-block;
+            vertical-align: bottom;
+            margin-left: 7px;
+            height: 34px;
+            width: 34px;
+            cursor: pointer;
+          }
+          .sendimg:active{
+            transform: scale(0.9)
+          }
+          .uploadimg{
+            background-color: transparent;
+            position: absolute;
+            width: 40px;
+            top: -6px;
+            padding-left: 77px;
+            right: -94px;
+          }
+        }
       }
     }
-  }
+
+    .ai-button{
+      position: fixed;
+      z-index: 3;
+      width: 450px;
+      bottom: 0;
+      right: 0;
+      height: 60px;
+      cursor: pointer;
+      .title{
+        text-align: left;
+        background: #ff9900;
+        color: white;
+        height: 60px;
+        font-size: 30px;
+        padding-top: 15px;
+        padding-left: 20px;
+        position: absolute;
+        width: 100%;
+        font-weight: 700;
+      }
+    }
 }
 
-.ai-button{
-  position: fixed;
-  z-index: 3;
-  width: 450px;
-  bottom: 0;
-  right: 0;
-  height: 60px;
-  cursor: pointer;
-  .title{
-    text-align: left;
-    background: #ff9900;
-    color: white;
-    height: 60px;
-    font-size: 30px;
-    padding-top: 15px;
-    padding-left: 20px;
-    position: absolute;
-    width: 100%;
-    font-weight: 700;
-  }
+@media screen and (max-width: 767px){
+    .ai{
+      position: fixed;
+      z-index: 2;
+      width: 100vw;
+      top: 0;
+      right: 0;
+      height:100vh;
+      background:rgba(255,255,255,1);
+      box-shadow:-10px 0px 10px rgba(0,0,0,0.05);
+      opacity:1;
+      .title{
+        text-align: left;
+        background: #ff9900;
+        color: white;
+        height: 60px;
+        font-size: 30px;
+        padding-top: 15px;
+        padding-left: 20px;
+        position: absolute;
+        width: 100%;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .close{
+        width: 35px;
+        height: 35px;
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        cursor: pointer;
+      }
+      .content{
+        width: 100%;
+        overflow: auto;
+        top: 60px;
+        position: absolute;
+        z-index: 10;
+        bottom: 55px;
+        background: #1b1b1b;
+        padding-bottom: 80px;
+        .left-bubble{
+          float: left;
+          width: 80%;
+          text-align: left;
+          padding: 10px;
+          margin: 10px;
+          color: black;
+          word-break:break-all;
+          background-color: #ff9900;
+          border-radius: 8px;
+          -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          -o-box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+        }
+        .right-bubble{
+          float: right;
+          width: 80%;
+          text-align: left;
+          padding: 10px;
+          margin: 10px;
+          color: white;
+          background-color: grey;
+          word-break:break-all;
+          border-radius: 8px;
+          -webkit-box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.05);
+          box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.05);
+          -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+          -o-box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+        }
+      }
+      .content::-webkit-scrollbar {/*滚动条整体样式*/
+        margin-right: 20px;
+        width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 4px;
+      }
+      .content::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+          border-radius: 2px;
+          --webkit-box-shadow: inset 0 0 5px grey;
+          background:rgba(239,239,239,1);
+      }
+      .content::-webkit-scrollbar-track {/*滚动条里面轨道*/
+          --webkit-box-shadow: inset 0 0 5px transparent;
+          border-radius: 0;
+          background: transparent;
+      }
+      .footer{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 55px;
+        background: #ff9900;
+        text-align: left;
+        input{
+          display: inline-block;
+          width: 62%;
+          height: 32px;
+          border-radius: 6px;
+          margin-top: 11px;
+          margin-left: 4%;
+          outline: none;
+          border: none;
+          font-size: 12px;
+          padding-right: 10px;
+          padding-left: 10px;
+        }
+        .sendtext{
+          display: inline-block;
+          vertical-align: bottom;
+          margin-left: 7px;
+          height: 30px;
+          width: 34px;
+          cursor: pointer;
+        }
+        .sendtext:active{
+          transform: scale(0.9)
+        }
+        .file-upload{
+          position: relative;
+          display: inline-block;
+          vertical-align: bottom;
+          .sendimg{
+            display: inline-block;
+            vertical-align: bottom;
+            margin-left: 7px;
+            height: 34px;
+            width: 34px;
+            cursor: pointer;
+          }
+          .sendimg:active{
+            transform: scale(0.9)
+          }
+          .uploadimg{
+            background-color: transparent;
+            position: absolute;
+            width: 40px;
+            top: -6px;
+            padding-left: 77px;
+            right: -94px;
+          }
+        }
+      }
+    }
+
+    .ai-button{
+      position: fixed;
+      z-index: 3;
+      width: 100vw;
+      bottom: 0;
+      right: 0;
+      height: 60px;
+      cursor: pointer;
+      .title{
+        text-align: left;
+        background: #ff9900;
+        color: white;
+        height: 60px;
+        font-size: 30px;
+        padding-top: 15px;
+        padding-left: 20px;
+        position: absolute;
+        width: 100%;
+        font-weight: 700;
+      }
+    }
 }
+
+
 </style>

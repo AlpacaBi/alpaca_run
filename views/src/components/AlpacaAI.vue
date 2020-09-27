@@ -146,7 +146,7 @@ export default class AlpacaAI extends Vue {
       setTimeout(() => {
         this.AlpacaAISaid('我同时也具备了图像识别功能，你可以在右下角发图给我识别！！！！');
         setTimeout(() => {
-          this.AlpacaAISaid('请文明发言哦！！！！');
+          this.AlpacaAISaid('我带有脏话检测功能，所以请文明发言哦！！！！');
         }, 2000);
       }, 2000);
     }, 3500);
@@ -331,10 +331,10 @@ export default class AlpacaAI extends Vue {
     .ai{
       position: fixed;
       z-index: 2;
-      width: 100vw;
+      width: 100%;
       top: 0;
       right: 0;
-      height:100vh;
+      height:100%;
       background:rgba(255,255,255,1);
       box-shadow:-10px 0px 10px rgba(0,0,0,0.05);
       opacity:1;
@@ -477,7 +477,7 @@ export default class AlpacaAI extends Vue {
     .ai-button{
       position: fixed;
       z-index: 3;
-      width: 100vw;
+      width: 100%;
       bottom: 0;
       right: 0;
       height: 60px;

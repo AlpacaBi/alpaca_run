@@ -19,6 +19,7 @@ body{
   margin: 0;
   color: white;
   background: black;
+  cursor: url('/assets/finger.cur'), auto;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

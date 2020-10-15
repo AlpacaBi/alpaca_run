@@ -13,6 +13,7 @@ import (
 
 // AIText 用于文字AI处理
 func AIText(c *gin.Context) {
+	textType := c.Request.FormValue("textType")
 	text := c.Request.FormValue("text")
 	robot := ai.NewXiaosiRobot(config.Current.Xiaosi.AppID)
 
@@ -66,44 +67,88 @@ func AIText(c *gin.Context) {
 		msg = robot.GetXiaosiReplyMsg(text, "1")
 	} else {
 
-		msg = "<b>检测到你的发言带有恶意：</b><br/>"
+		if textType == "npx" {
 
-		keyword := ""
+			msg = "检测到你的发言带有恶意！！！\n"
 
-		for i := 0; i < len(info2.Get("data").MustArray()); i++ {
-			if info2.Get("data").GetIndex(i).Get("type").MustInt() == 12 {
+			keyword := ""
 
-				fmt.Println(info2.Get("data").GetIndex(i).Get("type").MustInt())
-				subType := info2.Get("data").GetIndex(i).Get("subType").MustInt()
+			for i := 0; i < len(info2.Get("data").MustArray()); i++ {
+				if info2.Get("data").GetIndex(i).Get("type").MustInt() == 12 {
 
-				probability, _ := strconv.ParseFloat(fmt.Sprintf("%.2f", info2.Get("data").GetIndex(i).Get("hits").GetIndex(0).Get("probability").MustFloat64()*100), 64)
+					fmt.Println(info2.Get("data").GetIndex(i).Get("type").MustInt())
+					subType := info2.Get("data").GetIndex(i).Get("subType").MustInt()
 
-				for j := 0; j < len(info2.Get("data").GetIndex(i).Get("hits").GetIndex(0).Get("words").MustArray()); j++ {
-					keyword = keyword + "【" + info2.Get("data").GetIndex(i).Get("hits").GetIndex(0).Get("words").GetIndex(j).MustString() + "】"
+					probability, _ := strconv.ParseFloat(fmt.Sprintf("%.2f", info2.Get("data").GetIndex(i).Get("hits").GetIndex(0).Get("probability").MustFloat64()*100), 64)
+
+					for j := 0; j < len(info2.Get("data").GetIndex(i).Get("hits").GetIndex(0).Get("words").MustArray()); j++ {
+						keyword = keyword + "【" + info2.Get("data").GetIndex(i).Get("hits").GetIndex(0).Get("words").GetIndex(j).MustString() + "】"
+					}
+
+					if subType == 5 {
+						msg = msg + "低俗辱骂："
+					} else if subType == 2 {
+						msg = msg + "文本色情："
+					} else if subType == 1 {
+						msg = msg + "暴恐违禁："
+					} else if subType == 3 {
+						msg = msg + "政治敏感："
+					}
+
+					msg = msg + "(" + strconv.FormatFloat(probability, 'f', -1, 64) + "%)\n"
+
 				}
-
-				if subType == 5 {
-					msg = msg + "<span style=\"color:red\">低俗辱骂："
-				} else if subType == 2 {
-					msg = msg + "<span style=\"color:yellow\">文本色情："
-				} else if subType == 1 {
-					msg = msg + "<span style=\"color:black\">暴恐违禁："
-				} else if subType == 3 {
-					msg = msg + "<span style=\"color:black\">政治敏感："
-				}
-
-				msg = msg + "(" + strconv.FormatFloat(probability, 'f', -1, 64) + "%)</span><br/>"
 
 			}
 
-		}
+			if keyword != "" {
+				msg = msg + "关键词：" + keyword
+			}
 
-		if keyword != "" {
-			msg = msg + "<b>关键词：</b><br/>" + keyword
-		}
+			rand.Seed(time.Now().UnixNano())
+			msg = msg + "\n\n\n" + dirtyWord[rand.Intn(len(dirtyWord)+1)] + "\n\n\n"
 
-		rand.Seed(time.Now().UnixNano())
-		msg = msg + "<br/><br/><br/>" + dirtyWord[rand.Intn(len(dirtyWord)+1)]
+		} else {
+
+			msg = "<b>检测到你的发言带有恶意：</b><br/>"
+
+			keyword := ""
+
+			for i := 0; i < len(info2.Get("data").MustArray()); i++ {
+				if info2.Get("data").GetIndex(i).Get("type").MustInt() == 12 {
+
+					fmt.Println(info2.Get("data").GetIndex(i).Get("type").MustInt())
+					subType := info2.Get("data").GetIndex(i).Get("subType").MustInt()
+
+					probability, _ := strconv.ParseFloat(fmt.Sprintf("%.2f", info2.Get("data").GetIndex(i).Get("hits").GetIndex(0).Get("probability").MustFloat64()*100), 64)
+
+					for j := 0; j < len(info2.Get("data").GetIndex(i).Get("hits").GetIndex(0).Get("words").MustArray()); j++ {
+						keyword = keyword + "【" + info2.Get("data").GetIndex(i).Get("hits").GetIndex(0).Get("words").GetIndex(j).MustString() + "】"
+					}
+
+					if subType == 5 {
+						msg = msg + "<span style=\"color:red\">低俗辱骂："
+					} else if subType == 2 {
+						msg = msg + "<span style=\"color:yellow\">文本色情："
+					} else if subType == 1 {
+						msg = msg + "<span style=\"color:black\">暴恐违禁："
+					} else if subType == 3 {
+						msg = msg + "<span style=\"color:black\">政治敏感："
+					}
+
+					msg = msg + "(" + strconv.FormatFloat(probability, 'f', -1, 64) + "%)</span><br/>"
+
+				}
+
+			}
+
+			if keyword != "" {
+				msg = msg + "<b>关键词：</b><br/>" + keyword
+			}
+
+			rand.Seed(time.Now().UnixNano())
+			msg = msg + "<br/><br/><br/>" + dirtyWord[rand.Intn(len(dirtyWord)+1)]
+		}
 
 	}
 

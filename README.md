@@ -1,7 +1,7 @@
-# Alpaca Blog
+# Alpaca Run
 
 ## 简介
-本项目是一个个人博客，开发的技术栈和工具有
+本项目是一个个人网站，开发的技术栈和工具有
 - <b style="color:#2b7489">TypeScript</b>
 - <b style="color:rgb(79, 192, 141)">Vue.js</b>
 - <b style="color:rgb(0, 173, 216)">Golang</b>

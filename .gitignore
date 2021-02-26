@@ -1,6 +1,5 @@
 .DS_Store
 views/node_modules
-views/dist
 
 # local env files
 .env.local

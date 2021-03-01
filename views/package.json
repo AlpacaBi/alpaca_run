@@ -20,6 +20,7 @@
     "vuex-class": "^0.3.2"
   },
   "devDependencies": {
+    "@types/qs": "^6.9.5",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-typescript": "^3.11.0",
     "@vue/cli-service": "^3.11.0",

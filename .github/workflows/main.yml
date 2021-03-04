@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: DEPLOY_ALPACA_RESUME
+name: DEPLOY_ALPACA_RUN
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch

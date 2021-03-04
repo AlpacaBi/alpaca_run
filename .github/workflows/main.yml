@@ -33,5 +33,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          source: "views/dist/."
+          source: "/views/dist/."
           target: "/home/alpaca_blog/"

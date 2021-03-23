@@ -10,38 +10,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'info',
+      component: () => import( './components/AboutSection/Info.vue'),
     },
+    // {
+    //   path: 'skills',
+    //   name: 'skills',
+    //   component: () => import('./components/AboutSection/Skills.vue'),
+    // },
+    // {
+    //   path: 'profile',
+    //   name: 'profile',
+    //   component: () => import( './components/AboutSection/Profile.vue'),
+    // },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-      children: [
-        {
-          path: '/',
-          name: 'info',
-          component: () => import( './components/AboutSection/Info.vue'),
-        },
-        {
-          path: 'skills',
-          name: 'skills',
-          component: () => import('./components/AboutSection/Skills.vue'),
-        },
-        {
-          path: 'profile',
-          name: 'profile',
-          component: () => import( './components/AboutSection/Profile.vue'),
-        },
-        {
-          path: 'contact',
-          name: 'contact',
-          component: () => import('./components/AboutSection/Contact.vue'),
-        },
-      ],
+      path: 'contact',
+      name: 'contact',
+      component: () => import('./components/AboutSection/Contact.vue'),
     },
   ],
 });

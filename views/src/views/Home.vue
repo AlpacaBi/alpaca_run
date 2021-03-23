@@ -1,67 +1,109 @@
 <template>
-  <div class="new-articles">
-    <el-carousel :interval="4000" type="card" height="250px" class="new-articles-carousel">
-      <el-carousel-item v-for="item in newArticles" :key="item">
-        <h3>{{ item }}</h3>
-      </el-carousel-item>
-    </el-carousel>
-    <div>{{num}}</div>
-    <button @click="del">-</button>
-    <button @click="add">+</button>
+  <div @mousewheel="mouseWheel">
+    <div class="nav">
+      <template v-for="(item, index) in this.$router.options.routes">
+        <router-link :to="{name: item.name}" :key="index" exact><i @click="clickRouteChange" class="nav-item"></i></router-link>
+      </template>
+    </div>
+    <div class="page">
+      <transition
+        mode="out-in"
+        :duration="{ enter: animateOptions.enterTime, leave: animateOptions.leaveTime }"
+        :leave-active-class="'animated ' + animateOptions.leave"
+        :enter-active-class="'animated ' + animateOptions.enter">
+        <router-view />
+      </transition>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-import { State, Mutation } from 'vuex-class';
+import { State, Action } from 'vuex-class';
+import 'animate.css';
 
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
+
+@Component
 export default class Home extends Vue {
-  private newArticles: string[] = ['关于ES6的研究', 'TypeScript装饰器探究', '为什么我会使用Graphql', 'Golang日常总结'];
-  @State private num!: number;
-  @Mutation private del!: () => void;
-  @Mutation private add!: () => void;
+  @State private animateOptions: any;
+
+  @Action private next!: (x: string | undefined | null ) => any;
+  @Action private last!: (x: string | undefined | null ) => any;
+  @Action private clickRouteChange!: () => void;
+
+  private lastScroll: number = 0;
+
+  private mouseWheel(event: any) {
+    // 防止用户短时间内滚动多次，设置滚动间隔大于一秒才能生效
+    // 判断滚动间隔时间
+    const scrollDuration = event.timeStamp - this.lastScroll;
+    if (scrollDuration > 1000) {
+    // 将这一次的滚动时间记录为上一次合法的滚动时间
+    this.lastScroll = event.timeStamp;
+    // console.log('合法的滚动')
+    // 判断滚动方向进行操作
+    if (event.deltaY > 0) {
+      const presentName: string | undefined | null = this.$route.name;
+      this.next(presentName).then((nextPageName: string)  => {
+        this.$router.push({name: nextPageName});
+      });
+    } else {
+      const presentName: string | undefined | null = this.$route.name;
+      this.last(presentName).then((lastPageName: string) => {
+        this.$router.push({name: lastPageName});
+      });
+    }
+  }
+}
+
 }
 </script>
 
 <style lang="scss" scoped>
-  .new-articles{
-    text-align: center;
-    width: 100%;
-    padding-top: 20px;
-  }
-  .new-articles-carousel{
-    width: 90%;
-    margin-left: 5%;
-  }
-
-  .el-carousel__item--card{
-    background-color: white;
-    border-radius: 6px;
-    
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+.nav {
+  position: fixed;
+  left: 20px;
+  top: 45%;
+  z-index: 100;
+  color: grey;
+  a {
+    text-decoration-line: none;
   }
 
-  .el-carousel__item--card.is-active:hover{
-    /* 明亮的边框 */
-    border: 1px solid grey;
-    /* 闪烁的动画 */
-    animation:flash 2s linear infinite;         
+  .nav-item {
+    display: block;
+    font-size: 11px;
+    margin-top: 5px;
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    background-color: grey;
+    opacity: 0.5;
   }
-  /* 添加不同透明度的投影 */
-  @keyframes flash{
-    0%{box-shadow:0 0 10px grey; }
-    50%{box-shadow:0 0 10px white; }
-    100%{box-shadow:0 0 10px grey; }
+  .router-link-active {
+    .nav-item {
+      background-color: white !important;
+    }
   }
+}
+.page{
+  position: absolute;
+  top: 0;
+  background-color: black
+}
+// .pageinfo{
+//   background-color: #101010;
+// }
+// .pageskills{
+//   background-color: #409EFF;
+// }
+// .pageprofile{
+//   background-color: #24292e;
+// }
+// .pagecontact{
+//   background-color: #83B8EF;
+// }
+
+
 
 </style>
-
-

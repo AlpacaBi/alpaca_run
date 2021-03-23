@@ -17,7 +17,8 @@ export default class Profile extends Vue {
 <style lang="scss" scoped>
 .section {
   height: 100vh;
-  background-color: #24292e !important;
+  width: 100vw;
+  background-color: black !important;
   .profile-title{
     color: white;
     font-weight: bold;

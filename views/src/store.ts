@@ -83,15 +83,13 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         // console.log(presentPath)
         // 获取当前页面路径在整体路由的位置
-        const index = state.routes.options.routes[1].children.findIndex((route: any) => {
-          return route.name === presentName;
-        });
+        const index = state.routes.options.routes.findIndex((route: any) => route.name === presentName);
         // 获取当前路由的下一个路由路径
         let nextPageName;
-        if (index + 1 === state.routes.options.routes[1].children.length) {
-          nextPageName = state.routes.options.routes[1].children[0].name;
+        if (index + 1 === state.routes.options.routes.length) {
+          nextPageName = state.routes.options.routes[0].name;
         } else {
-          nextPageName = state.routes.options.routes[1].children[index + 1].name;
+          nextPageName = state.routes.options.routes[index + 1].name;
         }
         const animateDirection = {
           leave: 'zoomOut',
@@ -113,19 +111,19 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         // console.log(presentPath)
         // 获取当前页面路径在整体路由的位置
-        const index = state.routes.options.routes[1].children.findIndex((route: any) => route.name === presentName);
+        const index = state.routes.options.routes.findIndex((route: any) => route.name === presentName);
         // 获取当前路由的上一个路由路径
         let lastPageName;
         if (index === 0) {
-          const routesLength = state.routes.options.routes[1].children.length;
-          lastPageName = state.routes.options.routes[1].children[routesLength - 1].name;
+          const routesLength = state.routes.options.routes.length;
+          lastPageName = state.routes.options.routes[routesLength - 1].name;
         } else {
-          lastPageName = state.routes.options.routes[1].children[index - 1].name;
+          lastPageName = state.routes.options.routes[index - 1].name;
         }
         // console.log(lastPagePath)
         const animateDirection = {
-          leave: 'lightSpeedOut',
-          enter: 'lightSpeedIn',
+          leave: 'zoomOut',
+          enter: 'zoomIn',
           leaveTime: 1000,
           enterTime: 1000,
         };
@@ -141,8 +139,8 @@ export default new Vuex.Store({
     // 点击小圆点切换页面
     clickRouteChange({ commit, state }) {
       const animateDirection = {
-        leave: 'rollOut',
-        enter: 'rollIn',
+        leave: 'zoomOut',
+        enter: 'zoomIn',
         leaveTime: 1000,
         enterTime: 1000,
       };

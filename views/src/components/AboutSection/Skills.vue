@@ -17,7 +17,8 @@ export default class Skills extends Vue {
 <style lang="scss" scoped>
 .section {
   height: 100vh;
-  background-color: #409EFF !important;
+  width: 100vw;
+  background-color: black !important;
   .skills-title{
     color: white;
     font-weight: bold;

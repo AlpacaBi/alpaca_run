@@ -81,6 +81,7 @@ export default class Contact extends Vue {
   private created() {
     this.showCard();
   }
+
 }
 </script>
 

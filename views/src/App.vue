@@ -5,6 +5,17 @@
     <!-- <LeftMenu/> -->
     <TopBar/>
 
+    <div class="info">
+      <div class="name">Alpaca Bi</div>
+      <div class="intro">一个来自广州的95后全栈工程师</div>
+      <div class="more">想了解更多？请在终端输入以下命令</div>
+      <el-tooltip content="点击即可复制" placement="right" effect="dark">
+        <div class="terminal" @click="copy">
+          npx alpaca-bi
+        </div>
+      </el-tooltip>
+    </div>
+
     <!-- <div class="right-content"><router-view/></div> -->
 
     <AlpacaAI/>
@@ -14,27 +25,10 @@
   </div>
 </template>
 
-<style lang="scss">
-body{
-  margin: 0;
-  color: white;
-  background: black;
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
-.right-content {
-  margin-left: 300px;
-  background: #24292e;
-  height: 100vh;
-}
-</style>
 <script lang="ts">
   import { Component,  Vue } from 'vue-property-decorator';
   import { State, Mutation } from 'vuex-class';
+  import { Notification } from 'element-ui';
   import LeftMenu from '@/components/LeftMenu.vue';
   import AlpacaAI from '@/components/AlpacaAI.vue';
   import LoginDialog from '@/components/LoginDialog.vue';
@@ -126,5 +120,73 @@ body{
       this.openAiShow();
     }
 
+    private copy() {
+      const input = document.createElement('input');
+      document.body.appendChild(input);
+      input.setAttribute('value', 'npx alpaca-bi');
+      input.select();
+      if (document.execCommand('copy')) {
+          document.execCommand('copy');
+      }
+      document.body.removeChild(input);
+      Notification({
+        title: '成功',
+          message: '复制成功',
+          type: 'success',
+          position: 'top-left',
+      });
+    }
+
   }
 </script>
+
+<style lang="scss">
+body{
+  margin: 0;
+  color: white;
+  background: black;
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+.right-content {
+  margin-left: 300px;
+  background: #24292e;
+  height: 100vh;
+}
+.info {
+  position: absolute;
+  display: flex;
+  top: 0;
+  height: 99.5vh;
+  width: 99.5vw;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .name {
+    font-size: 80px;
+  }
+  .intro {
+    font-size: 40px;
+    margin-bottom: 200px;
+  }
+  .more {
+    margin-bottom: 15px;
+  }
+  .terminal {
+    border: 1px solid #ff9900;
+    border-radius: 8px;
+    padding: 13px;
+    font-size: 20px;
+    color: #ff9900;
+    &:hover{
+      color: white;
+      background: #ff9900;
+    }
+  }
+}
+</style>

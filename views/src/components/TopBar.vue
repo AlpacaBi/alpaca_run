@@ -3,7 +3,7 @@
     <div id="headerWrapper">
       <div id="headerContainer">
         <div class="logo pornhub_logo" @click="changeAiShow">
-          <span class="text1">Alpaca</span><span class="text2">blog</span>
+          <span class="text1">Alpaca</span><span class="text2">Run</span>
         </div>
       </div>
     </div>

@@ -18,11 +18,11 @@ export default new Router({
     //   name: 'skills',
     //   component: () => import('./components/AboutSection/Skills.vue'),
     // },
-    // {
-    //   path: 'profile',
-    //   name: 'profile',
-    //   component: () => import( './components/AboutSection/Profile.vue'),
-    // },
+    {
+      path: 'profile',
+      name: 'profile',
+      component: () => import( './components/AboutSection/Profile.vue'),
+    },
     {
       path: 'contact',
       name: 'contact',

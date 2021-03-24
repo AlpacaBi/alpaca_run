@@ -91,6 +91,12 @@ export default class Home extends Vue {
   top: 0;
   background-color: black
 }
+
+@media screen and (max-width: 767px){
+  .nav{
+    display: none;
+  }
+}
 // .pageinfo{
 //   background-color: #101010;
 // }

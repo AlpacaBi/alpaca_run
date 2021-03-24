@@ -18,7 +18,7 @@
 
 <script lang="ts">
   import { Component,  Vue } from 'vue-property-decorator';
-  import { State, Mutation } from 'vuex-class';
+  import { State, Mutation, Action } from 'vuex-class';
   import LeftMenu from '@/components/LeftMenu.vue';
   import Home from '@/views/Home.vue';
   import AlpacaAI from '@/components/AlpacaAI.vue';
@@ -38,10 +38,12 @@
   export default class APP extends Vue {
     @State private aiShow!: boolean;
     @Mutation private openAiShow!: () => void;
+    @Action private setRepos!: (repos: any ) => void;
 
     private dialogFormVisible: boolean = false;
 
     private async created() {
+      this.getGithubRepo();
       const x = document.createElement('div');
       Object.defineProperty(x, 'id', {
           get: async () => {
@@ -108,8 +110,16 @@
           sound.play();
       };
 
-      await sleep(2);
+      await sleep(1);
       this.openAiShow();
+    }
+
+    // 加载github api
+    private async getGithubRepo() {
+      const url: string = '/users/alpacabi/repos';
+      const res: any = await this.$github_ajax.get(url);
+      const repos = res.data.sort((a: any, b: any) => b.stargazers_count - a.stargazers_count).slice(0, 6);
+      this.setRepos(repos);
     }
   }
 </script>

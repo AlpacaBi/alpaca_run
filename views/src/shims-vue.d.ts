@@ -12,6 +12,7 @@ declare module "vue/types/vue" {
     $router: VueRouter; // 这表示this下有这个东西
     $route: Route;
     $ajax: any;
+    $github_ajax: any;
   }
 }
 

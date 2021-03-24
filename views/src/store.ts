@@ -23,6 +23,7 @@ interface IState {
   info: any;
   skills: any;
   profiles: any;
+  reposData: any[];
 }
 
 const State: IState = {
@@ -41,6 +42,7 @@ const State: IState = {
   info,
   skills,
   profiles,
+  reposData: [],
 };
 
 
@@ -76,6 +78,9 @@ export default new Vuex.Store({
     changeShowArrow(state) {
       state.showArrow = !state.showArrow;
     },
+    setReposData(state, data) {
+      state.reposData = data;
+    },
   },
   actions: {
     // 下一页  =====> 鼠标滚轮向下滚动 或 向下滑动（移动端）
@@ -92,8 +97,8 @@ export default new Vuex.Store({
           nextPageName = state.routes.options.routes[index + 1].name;
         }
         const animateDirection = {
-          leave: 'zoomOut',
-          enter: 'zoomIn',
+          leave: 'slideOutUp',
+          enter: 'slideInUp',
           leaveTime: 1000,
           enterTime: 1000,
         };
@@ -122,8 +127,8 @@ export default new Vuex.Store({
         }
         // console.log(lastPagePath)
         const animateDirection = {
-          leave: 'zoomOut',
-          enter: 'zoomIn',
+          leave: 'slideOutDown',
+          enter: 'slideInDown',
           leaveTime: 1000,
           enterTime: 1000,
         };
@@ -149,6 +154,9 @@ export default new Vuex.Store({
       setTimeout(() => {
         commit('changeShowArrow');
       }, state.animateOptions.leaveTime + state.animateOptions.enterTime);
+    },
+    setRepos({ commit, state }, repos) {
+      commit('setReposData', repos);
     },
   },
 });

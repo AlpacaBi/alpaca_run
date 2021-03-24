@@ -12,6 +12,14 @@ module.exports = {
                 pathRewrite: {
                   '^/apis': ''
                 }
+            },
+            '/github': {
+                target: 'https://api.github.com',
+                changeOrigin: true,
+                ws: true,
+                pathRewrite: {
+                  '^/github': ''
+                }
             }
         }
     }

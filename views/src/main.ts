@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import service from './utils/ajax';
+import services from './utils/ajax';
 import 'element-ui/lib/theme-chalk/index.css';
 import {
   Button,
@@ -27,7 +27,8 @@ Vue.component(Notification.name, Notification);
 Vue.component(Dialog.name, Dialog);
 
 // 封装好了axios，并接入Vue的原型链，从而在任何地方都能使用
-Vue.prototype.$ajax = service;
+Vue.prototype.$ajax = services.service;
+Vue.prototype.$github_ajax = services.githubService;
 
 Vue.config.productionTip = false;
 

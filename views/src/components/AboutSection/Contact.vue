@@ -1,58 +1,60 @@
 <template>
-<div class="page-item section">
-  <!-- <div class="contact-title">Contact</div> -->
-  <transition mode="out-in" enter-active-class="animated bounceIn" :duration="{ enter: 1000, leave: 1000 }">
+  <div class="page-item section">
+    <!-- <div class="contact-title">Contact</div> -->
     <div class="welcome" v-show="show0">欢迎各位大佬前来交流学♂习心得，共同进步！！</div>
-  </transition>
 
-  <div class="cards">
-    <transition mode="out-in" enter-active-class="animated rotateInDownLeft" :duration="{ enter: 1000, leave: 1000 }">
-      <div class="card" v-show="show1">
-        <img :src="images.cphone" alt="">
-        <div class="text"><a class="text" href="tel:17666503029">17666503029</a></div>
-      </div>
-    </transition>
-    <transition mode="out-in" enter-active-class="animated rotateInDownRight" :duration="{ enter: 1000, leave: 1000 }">
-      <div class="card" v-show="show2" @click="openWechatQRCode">
-        <img :src="images.cwechat" alt="">
-        <div class="text">workbiguokang</div>
-      </div>
-    </transition>
-    <transition mode="out-in" enter-active-class="animated rotateInUpLeft" :duration="{ enter: 1000, leave: 1000 }">
-      <div class="card" v-show="show3">
-        <img :src="images.cgithub" alt="">
-        <div class="text"><a class="text" href="https://github.com/AlpacaBi" target="_blank">AlpacaBi</a></div>
-      </div>
-    </transition>
-    <transition mode="out-in" enter-active-class="animated rotateInUpRight" :duration="{ enter: 1000, leave: 1000 }">
-      <div class="card" v-show="show4">
-        <img :src="images.cmail" alt="">
-        <div class="text"><a class="text" href="biguokang@outlook.com">biguokang@outlook.com</a></div>
-      </div>
-    </transition>
-  </div>
-
-  <!-- <transition mode="out-in" enter-active-class="animated fadeInUpBig" :duration="{ enter: 1000, leave: 1000 }">
-    <div class="mp" v-show="show5">
-      <img :src="images.wpQRCode" alt="">
-      <div class="text">可以的话，请扫码关注我的公众号</div>
+    <div class="cards">
+      <transition mode="out-in" enter-active-class="animated slideInUp" :duration="{ enter: 1000, leave: 1000 }">
+        <div class="card" v-show="show1" @mouseenter="phone = '打电话'" @mouseleave="phone = '17666503029'">
+          <img :src="images.cphone" alt="">
+          <div class="text"><a class="text" href="tel:17666503029">{{phone}}</a></div>
+        </div>
+      </transition>
+      <transition mode="out-in" enter-active-class="animated slideInUp" :duration="{ enter: 1000, leave: 1000 }">
+        <div class="card" v-show="show2" @click="openWechatQRCode" @mouseenter="wechat = '弹出微信二维码'" @mouseleave="wechat = 'workbiguokang'">
+          <img :src="images.cwechat" alt="">
+          <div class="text">{{wechat}}</div>
+        </div>
+      </transition>
+      <transition mode="out-in" enter-active-class="animated slideInUp" :duration="{ enter: 1000, leave: 1000 }">
+        <div class="card" v-show="show3" @mouseenter="github = '进入AlpacaBi的GitHub'" @mouseleave="github = 'AlpacaBi'">
+          <img :src="images.cgithub" alt="">
+          <div class="text"><a class="text" href="https://github.com/AlpacaBi" target="_blank">{{github}}</a></div>
+        </div>
+      </transition>
+      <transition mode="out-in" enter-active-class="animated slideInUp" :duration="{ enter: 1000, leave: 1000 }">
+        <div class="card" v-show="show4" @mouseenter="email = '发邮件'" @mouseleave="email = 'biguokang@outlook.com'">
+          <img :src="images.cmail" alt="">
+          <div class="text"><a class="text" href="Mailto:biguokang@outlook.com">{{email}}</a></div>
+        </div>
+      </transition>
     </div>
-  </transition> -->
 
-  
-</div>
+    <div class="next" @click="nextPage">Back To Home</div>
+
+    <!-- <transition mode="out-in" enter-active-class="animated fadeInUpBig" :duration="{ enter: 1000, leave: 1000 }">
+      <div class="mp" v-show="show5">
+        <img :src="images.wpQRCode" alt="">
+        <div class="text">可以的话，请扫码关注我的公众号</div>
+      </div>
+    </transition> -->
+
+    
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Notification } from 'element-ui';
-import { State } from 'vuex-class';
+import { State, Action } from 'vuex-class';
 import sleep from '@/utils/sleep';
 
 @Component
 export default class Contact extends Vue {
   @State private contact!: any;
   @State private images!: any;
+  @Action private next!: (x: string | undefined | null ) => any;
+
   private show0: boolean = false;
   private show1: boolean = false;
   private show2: boolean = false;
@@ -60,13 +62,26 @@ export default class Contact extends Vue {
   private show4: boolean = false;
   private show5: boolean = false;
 
+  private phone: string = '17666503029';
+  private wechat: string = 'workbiguokang';
+  private github: string = 'AlpacaBi';
+  private email: string = 'biguokang';
+
+  private created() {
+    this.showCard();
+  }
+
   private async showCard() {
     await sleep(0.2);
     this.show0 = true;
     await sleep(1);
-    this.show1 = true; this.show2 = true;
+    this.show1 = true;
     await sleep(1);
-    this.show3 = true; this.show4 = true;
+    this.show2 = true;
+    await sleep(1);
+    this.show3 = true;
+    await sleep(1);
+    this.show4 = true;
   }
 
   private openWechatQRCode() {
@@ -78,8 +93,11 @@ export default class Contact extends Vue {
     });
   }
 
-  private created() {
-    this.showCard();
+  private nextPage() {
+    const presentName: string | undefined | null = this.$route.name;
+    this.next(presentName).then((nextPageName: string)  => {
+      this.$router.push({name: nextPageName});
+    });
   }
 
 }
@@ -87,8 +105,8 @@ export default class Contact extends Vue {
 
 <style lang="scss" scoped>
 .section {
-  height: 100vh;
-  width: 100vw;
+  height: calc(100vh - 80px);
+  width: 98vw;
   background-color: black !important;
   overflow: hidden;
   display: flex;
@@ -108,12 +126,22 @@ export default class Contact extends Vue {
       font-size: 50px;
       margin-bottom: 80px;
     }
+    .next{
+      display: none;
+    }
   }
   @media screen and (max-width: 767px){
     .welcome{
       color: white;
       font-size: 25px;
       margin-bottom: 80px;
+    }
+    .next {
+      position: absolute;
+      color: #ff9900;
+      bottom: 20px;
+      font-size:24px;
+      text-decoration: underline;
     }
   }
  

@@ -46,7 +46,7 @@ export default class TopBar extends Vue {
   display: grid;
   grid-template-rows: 60px 40px;
   z-index: 2;
-  position: relative;
+  position: fixed;
   #headerWrapper {
     width: 100%;
     background-color: #1b1b1b;

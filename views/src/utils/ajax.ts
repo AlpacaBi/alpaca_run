@@ -3,9 +3,18 @@ import qs from 'qs';
 
 // 创建axios实例
 let service: any = {};
+let githubService: any = {};
 if (process.env.NODE_ENV === 'development') {
   service = axios.create({
     baseURL: '/apis', // api的base_url
+    timeout: 50000, // 请求超时时间
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    withCredentials: true, // 允许携带cookie
+  });
+  githubService = axios.create({
+    baseURL: '/github', // api的base_url
     timeout: 50000, // 请求超时时间
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -16,6 +25,14 @@ if (process.env.NODE_ENV === 'development') {
   // 生产环境下
   service = axios.create({
     baseURL: '/apis', // api的base_url
+    timeout: 50000, // 请求超时时间
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    withCredentials: true, // 允许携带cookie
+  });
+  githubService = axios.create({
+    baseURL: '/github', // api的base_url
     timeout: 50000, // 请求超时时间
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -38,6 +55,18 @@ service.interceptors.request.use(
   },
 );
 
+githubService.interceptors.request.use(
+  (config: any) => {
+    config.data = qs.stringify(config.data);
+    return config;
+  },
+  (error: any) => {
+    // Do something with request error
+    console.error('error:', error); // for debug
+    Promise.reject(error);
+  },
+);
 
+const services = { service, githubService };
 
-export default service;
+export default services;

@@ -8,31 +8,43 @@
           npx alpaca-bi
         </div>
       </el-tooltip>
+      <div class="next" @click="nextPage">Next</div>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Action } from 'vuex-class';
 import { Notification } from 'element-ui';
 
 @Component
 export default class Info extends Vue {
+
+  @Action private next!: (x: string | undefined | null ) => any;
+
   private copy() {
-      const input = document.createElement('input');
-      document.body.appendChild(input);
-      input.setAttribute('value', 'npx alpaca-bi');
-      input.select();
-      if (document.execCommand('copy')) {
-          document.execCommand('copy');
-      }
-      document.body.removeChild(input);
-      Notification({
-        title: '成功',
-          message: '复制成功',
-          type: 'success',
-          position: 'top-left',
-      });
+    const input = document.createElement('input');
+    document.body.appendChild(input);
+    input.setAttribute('value', 'npx alpaca-bi');
+    input.select();
+    if (document.execCommand('copy')) {
+        document.execCommand('copy');
     }
+    document.body.removeChild(input);
+    Notification({
+      title: '成功',
+        message: '复制成功',
+        type: 'success',
+        position: 'top-left',
+    });
+  }
+
+  private nextPage() {
+    const presentName: string | undefined | null = this.$route.name;
+    this.next(presentName).then((nextPageName: string)  => {
+      this.$router.push({name: nextPageName});
+    });
+  }
 }
 </script>
 
@@ -69,6 +81,9 @@ export default class Info extends Vue {
         background: #ff9900;
       }
     }
+    .next{
+      display: none;
+    }
   }
   @media screen and (max-width: 767px){
     .name {
@@ -92,6 +107,13 @@ export default class Info extends Vue {
         color: white;
         background: #ff9900;
       }
+    }
+    .next {
+      position: absolute;
+      color: #ff9900;
+      bottom: 20px;
+      font-size:24px;
+      text-decoration: underline;
     }
   }
 }

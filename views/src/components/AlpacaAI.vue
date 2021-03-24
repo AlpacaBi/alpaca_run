@@ -1,8 +1,8 @@
 <template>
   <div>
-    <transition enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown">
+    <transition enter-active-class="animated slideInDown" leave-active-class="animated slideOutUp">
       <div class="ai-button" @click="ping" v-show="!aiShow">
-        <div class="title">Alpaca AI</div>
+        <div class="title">AI</div>
       </div>
     </transition>
     <transition enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown">
@@ -46,6 +46,7 @@
 import { Component, Prop, Vue, PropSync } from 'vue-property-decorator';
 import { State, Mutation } from 'vuex-class';
 import { Notification } from 'element-ui';
+import sleep from '@/utils/sleep';
 import 'animate.css';
 
 interface IChatArrList {
@@ -140,16 +141,13 @@ export default class AlpacaAI extends Vue {
     };
   }
 
-  private created() {
-    setTimeout(() => {
-      this.AlpacaAISaid('你好啊，我是Alpaca AI,一个人工智能，你可以打字和我聊天！！！！');
-      setTimeout(() => {
-        this.AlpacaAISaid('我同时也具备了图像识别功能，你可以在右下角发图给我识别！！！！');
-        setTimeout(() => {
-          this.AlpacaAISaid('我带有脏话检测功能，所以请文明发言哦！！！！');
-        }, 2000);
-      }, 2000);
-    }, 3500);
+  private async created() {
+    await sleep(3.5);
+    this.AlpacaAISaid('你好啊，我是Alpaca AI,一个人工智能，你可以打字和我聊天！！！！');
+    await sleep(2);
+    this.AlpacaAISaid('我同时也具备了图像识别功能，你可以在右下角发图给我识别！！！！');
+    await sleep(2);
+    this.AlpacaAISaid('我带有脏话检测功能，所以请文明发言哦！！！！');
   }
 }
 </script>
@@ -160,7 +158,7 @@ export default class AlpacaAI extends Vue {
 @media screen and (min-width: 769px){
     .ai{
       position: fixed;
-      z-index: 2;
+      z-index: 3;
       width: 450px;
       top: 0;
       right: 0;
@@ -307,20 +305,19 @@ export default class AlpacaAI extends Vue {
     .ai-button{
       position: fixed;
       z-index: 3;
-      width: 450px;
-      bottom: 0;
+      width: 60px;
+      background: #ff9900;
+      top: 0;
       right: 0;
       height: 60px;
       cursor: pointer;
       .title{
-        text-align: left;
-        background: #ff9900;
+        text-align: center;
         color: white;
         height: 60px;
         font-size: 30px;
-        padding-top: 15px;
-        padding-left: 20px;
         position: absolute;
+        top: 10px;
         width: 100%;
         font-weight: 700;
       }
@@ -330,7 +327,7 @@ export default class AlpacaAI extends Vue {
 @media screen and (max-width: 767px){
     .ai{
       position: fixed;
-      z-index: 2;
+      z-index: 3;
       width: 100%;
       top: 0;
       right: 0;
@@ -477,20 +474,19 @@ export default class AlpacaAI extends Vue {
     .ai-button{
       position: fixed;
       z-index: 3;
-      width: 100%;
-      bottom: 0;
+      width: 60px;
+      background: #ff9900;
+      top: 0;
       right: 0;
       height: 60px;
       cursor: pointer;
       .title{
-        text-align: left;
-        background: #ff9900;
+        text-align: center;
         color: white;
         height: 60px;
         font-size: 30px;
-        padding-top: 15px;
-        padding-left: 20px;
         position: absolute;
+        top: 10px;
         width: 100%;
         font-weight: 700;
       }

@@ -64,7 +64,7 @@ export default class Home extends Vue {
   position: fixed;
   left: 20px;
   top: 45%;
-  z-index: 100;
+  z-index: 2;
   color: grey;
   a {
     text-decoration-line: none;
@@ -77,7 +77,7 @@ export default class Home extends Vue {
     height: 12px;
     width: 12px;
     border-radius: 100%;
-    background-color: grey;
+    border: 1px solid white;
     opacity: 0.5;
   }
   .router-link-active {

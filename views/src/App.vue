@@ -25,6 +25,7 @@
   import LoginDialog from '@/components/LoginDialog.vue';
   import TopBar from '@/components/TopBar.vue';
   import sleep from '@/utils/sleep';
+  import {repoData} from '@/data/data';
 
   @Component({
     components: {
@@ -116,10 +117,11 @@
 
     // 加载github api
     private async getGithubRepo() {
-      const url: string = '/users/alpacabi/repos';
-      const res: any = await this.$github_ajax.get(url);
-      const repos = res.data.sort((a: any, b: any) => b.stargazers_count - a.stargazers_count).slice(0, 6);
-      this.setRepos(repos);
+      // const url: string = '/users/alpacabi/repos';
+      // const res: any = await this.$github_ajax.get(url);
+      // const repos = res.data.sort((a: any, b: any) => b.stargazers_count - a.stargazers_count).slice(0, 6);
+      // console.log(repos)
+      this.setRepos(repoData);
     }
   }
 </script>

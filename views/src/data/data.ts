@@ -126,7 +126,7 @@ export const repoData = [
   {
       name: 'live2d_ai',
       description: '基于live2d.js实现的动画小人ai，拥有聊天功能，还有图片识别功能，可以嵌入到网页里',
-      targazers_count: 35,
+      stargazers_count: 35,
       html_url: 'https://github.com/AlpacaBi/live2d_ai',
       forks: 12,
       language: 'JavaScript',
@@ -134,7 +134,7 @@ export const repoData = [
   {
       name: 'bgk_weixin_bot',
       description: '基于python3的微信聊天机器人，增加了图片识别功能',
-      targazers_count: 25,
+      stargazers_count: 25,
       html_url: 'https://github.com/AlpacaBi/bgk_weixin_bot',
       forks: 13,
       language: 'Python',
@@ -142,7 +142,7 @@ export const repoData = [
   {
       name: 'alpaca_run',
       description: '一个基于TypeScript+Golang+Vue+Graphql的个人网站',
-      targazers_count: 23,
+      stargazers_count: 23,
       html_url: 'https://github.com/AlpacaBi/alpaca_run',
       forks: 0,
       language: 'TypeScript',
@@ -150,7 +150,7 @@ export const repoData = [
   {
       name: '30-days-of-react-native-expo',
       description: '30 days of React Native Expo demos',
-      targazers_count: 14,
+      stargazers_count: 14,
       html_url: 'https://github.com/AlpacaBi/30-days-of-react-native-expo',
       forks: 2,
       language: 'JavaScript',
@@ -158,7 +158,7 @@ export const repoData = [
   {
       name: 'qrcode_terminal',
       description: 'QRCode Terminal For Deno',
-      targazers_count: 7,
+      stargazers_count: 7,
       html_url: 'https://github.com/AlpacaBi/qrcode_terminal',
       forks: 0,
       language: 'JavaScript',
@@ -166,7 +166,7 @@ export const repoData = [
   {
       name: 'bgk-resume',
       description: '一个基于vue的在线动态简历，将来面试装逼用，你们可以直接改动简历内容部署在自己的服务器上',
-      targazers_count: 6,
+      stargazers_count: 6,
       html_url: 'https://github.com/AlpacaBi/bgk-resume',
       forks: 0,
       language: 'Vue',

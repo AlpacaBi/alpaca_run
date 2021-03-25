@@ -1,36 +1,29 @@
 <template>
+    <!-- <transition mode="out-in" enter-active-class="animated slideInUp" :duration="{ enter: 1000, leave: 1000 }"> -->
   <div class="page-item section">
     <!-- <div class="contact-title">Contact</div> -->
-    <div class="welcome" v-show="show0">欢迎各位大佬前来交流学♂习心得，共同进步！！</div>
 
-    <div class="cards">
-      <transition mode="out-in" enter-active-class="animated slideInUp" :duration="{ enter: 1000, leave: 1000 }">
+      <div class="welcome" v-show="show0">欢迎各位大佬前来交流学♂习心得，共同进步！！</div>
+      <div class="cards">
         <div class="card" v-show="show1" @mouseenter="phone = '打电话'" @mouseleave="phone = '17666503029'">
           <img :src="images.cphone" alt="">
           <div class="text"><a class="text" href="tel:17666503029">{{phone}}</a></div>
         </div>
-      </transition>
-      <transition mode="out-in" enter-active-class="animated slideInUp" :duration="{ enter: 1000, leave: 1000 }">
         <div class="card" v-show="show2" @click="openWechatQRCode" @mouseenter="wechat = '弹出微信二维码'" @mouseleave="wechat = 'workbiguokang'">
           <img :src="images.cwechat" alt="">
           <div class="text">{{wechat}}</div>
         </div>
-      </transition>
-      <transition mode="out-in" enter-active-class="animated slideInUp" :duration="{ enter: 1000, leave: 1000 }">
         <div class="card" v-show="show3" @mouseenter="github = '进入AlpacaBi的GitHub'" @mouseleave="github = 'AlpacaBi'">
           <img :src="images.cgithub" alt="">
           <div class="text"><a class="text" href="https://github.com/AlpacaBi" target="_blank">{{github}}</a></div>
         </div>
-      </transition>
-      <transition mode="out-in" enter-active-class="animated slideInUp" :duration="{ enter: 1000, leave: 1000 }">
         <div class="card" v-show="show4" @mouseenter="email = '发邮件'" @mouseleave="email = 'biguokang@outlook.com'">
           <img :src="images.cmail" alt="">
           <div class="text"><a class="text" href="Mailto:biguokang@outlook.com">{{email}}</a></div>
         </div>
-      </transition>
-    </div>
+      </div>
+      <div class="next" @click="nextPage">Back To Home</div>
 
-    <div class="next" @click="nextPage">Back To Home</div>
 
     <!-- <transition mode="out-in" enter-active-class="animated fadeInUpBig" :duration="{ enter: 1000, leave: 1000 }">
       <div class="mp" v-show="show5">
@@ -41,6 +34,7 @@
 
     
   </div>
+      <!-- </transition> -->
 </template>
 
 <script lang="ts">
@@ -74,13 +68,13 @@ export default class Contact extends Vue {
   private async showCard() {
     await sleep(0.2);
     this.show0 = true;
-    await sleep(1);
+    // await sleep(1);
     this.show1 = true;
-    await sleep(1);
+    // await sleep(1);
     this.show2 = true;
-    await sleep(1);
+    // await sleep(1);
     this.show3 = true;
-    await sleep(1);
+    // await sleep(1);
     this.show4 = true;
   }
 

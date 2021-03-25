@@ -1,18 +1,9 @@
 <template>
   <div id="app">
     <audio style="display:none" src="" controls id="sound"></audio>
-
-    <!-- <LeftMenu/> -->
     <Home />
     <TopBar/>
-    
-
-    <!-- <div class="right-content"><router-view/></div> -->
-
     <AlpacaAI/>
-    
-    <!-- <LoginDialog/> -->
-
   </div>
 </template>
 
@@ -98,18 +89,18 @@
         '乖♂乖♂站♂好',
       ];
 
-      document.onclick = () => {
-          const soundID = Math.floor(Math.random() * arr.length);
-          console.log(arr[soundID]);
-          document.title = arr[soundID];
-          setTimeout( () => {
-            document.title = 'Free Technology Blog & Alpaca Bi Website';
-          }, 3000);
-          const url = `https://alpaca.cdn.bcebos.com/zhexue/${soundID}.mp3`;
-          const sound: any = document.getElementById('sound');
-          sound.src = url;
-          sound.play();
-      };
+      // document.onclick = () => {
+      //     const soundID = Math.floor(Math.random() * arr.length);
+      //     console.log(arr[soundID]);
+      //     document.title = arr[soundID];
+      //     setTimeout( () => {
+      //       document.title = 'Free Technology Blog & Alpaca Bi Website';
+      //     }, 3000);
+      //     const url = `https://alpaca.cdn.bcebos.com/zhexue/${soundID}.mp3`;
+      //     const sound: any = document.getElementById('sound');
+      //     sound.src = url;
+      //     sound.play();
+      // };
 
       await sleep(1);
       this.openAiShow();

@@ -89,7 +89,7 @@ export default class Home extends Vue {
 .page{
   position: absolute;
   top: 0;
-  background-color: black
+  background-color: black;
 }
 
 @media screen and (max-width: 767px){

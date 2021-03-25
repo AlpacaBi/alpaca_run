@@ -53,8 +53,8 @@ export default class Info extends Vue {
   position: absolute;
   display: flex;
   top: 0;
-  height: 99.5vh;
-  width: 99.5vw;
+  height: calc(100vh - 80px);
+  width: 98vw;
   color: white;
   flex-direction: column;
   justify-content: center;

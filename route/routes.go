@@ -17,6 +17,8 @@ func InitRoutes() (router *gin.Engine) {
 		AI.POST("/image", controllers.AIImage)
 	}
 
+	router.GET("/github", controllers.Github) //测试！！！
+
 	router.GET("/ping", controllers.Pong) //测试！！！
 	return
 }

@@ -117,10 +117,10 @@
 
     // 加载github api
     private async getGithubRepo() {
-      // const url: string = '/users/alpacabi/repos';
-      // const res: any = await this.$github_ajax.get(url);
+      // const url: string = '/github';
+      // const res: any = await this.$ajax.get(url);
       // const repos = res.data.sort((a: any, b: any) => b.stargazers_count - a.stargazers_count).slice(0, 6);
-      // console.log(repos)
+      // console.log(repos);
       this.setRepos(repoData);
     }
   }

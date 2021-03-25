@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import router from './router';
-import { images, info, skills, profiles } from './data/data';
+import { images } from './data/data';
 
 Vue.use(Vuex);
 
@@ -20,9 +20,6 @@ interface IState {
   animateOptions: IAnimateOptions;
   showArrow: boolean;
   images: any;
-  info: any;
-  skills: any;
-  profiles: any;
   reposData: any[];
 }
 
@@ -39,9 +36,6 @@ const State: IState = {
   },
   showArrow: true,
   images,
-  info,
-  skills,
-  profiles,
   reposData: [],
 };
 

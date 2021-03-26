@@ -105,7 +105,7 @@ export default class AlpacaAI extends Vue {
       this.chatContent = '';
       if (res.data.status === 'ok') {
         this.AlpacaAISaid(res.data.message);
-        if(res.data.isDirty) {
+        if (res.data.isDirty) {
           const sound: any = document.getElementById('sound');
           sound.src = `https://cdn.alpaca.run/zhexue/3.mp3`;
           sound.play();

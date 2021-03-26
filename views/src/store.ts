@@ -103,6 +103,13 @@ export default new Vuex.Store({
         setTimeout(() => {
           commit('changeShowArrow');
         }, state.animateOptions.leaveTime + state.animateOptions.enterTime);
+        const sound: any = document.getElementById('sound');
+        sound.src = `https://cdn.alpaca.run/zhexue/2.mp3`;
+        sound.play();
+        document.title = 'boy next door';
+        setTimeout(() => {
+          document.title = 'Free Technology Blog & Alpaca Bi Website';
+        }, 3000);
       });
     },
     // 上一页 鼠标滚轮向上滚动 或 向上滑动（移动端）

@@ -97,19 +97,4 @@ export default class Home extends Vue {
     display: none;
   }
 }
-// .pageinfo{
-//   background-color: #101010;
-// }
-// .pageskills{
-//   background-color: #409EFF;
-// }
-// .pageprofile{
-//   background-color: #24292e;
-// }
-// .pagecontact{
-//   background-color: #83B8EF;
-// }
-
-
-
 </style>

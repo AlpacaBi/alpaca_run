@@ -17,6 +17,8 @@ func AIText(c *gin.Context) {
 	text := c.Request.FormValue("text")
 	robot := ai.NewXiaosiRobot(config.Current.Xiaosi.AppID)
 
+	isDirty := 0
+
 	dirtyWord := [...]string{
 		"你是不是性無能所以在網上自我高潮找存在感",
 		"你爸今晚连夜庭院种枇杷树",
@@ -66,6 +68,8 @@ func AIText(c *gin.Context) {
 	if info2.Get("conclusionType").MustInt() == 1 {
 		msg = robot.GetXiaosiReplyMsg(text, "1")
 	} else {
+
+		isDirty = 1
 
 		if textType == "npx" {
 
@@ -155,6 +159,7 @@ func AIText(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"status":  "ok",
 		"message": msg,
+		"isDirty": isDirty,
 	})
 
 	return

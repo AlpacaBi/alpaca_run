@@ -105,6 +105,14 @@ export default class AlpacaAI extends Vue {
       this.chatContent = '';
       if (res.data.status === 'ok') {
         this.AlpacaAISaid(res.data.message);
+        if(res.data.isDirty) {
+          const sound: any = document.getElementById('sound');
+          sound.src = `https://cdn.alpaca.run/zhexue/3.mp3`;
+          sound.play();
+          document.title = 'f♂ck y♂u';
+          await sleep(3);
+          document.title = 'Free Technology Blog & Alpaca Bi Website';
+        }
       } else {
         this.AlpacaAISaid('抱歉，AI服务器网络错误');
       }

@@ -28,15 +28,15 @@ export const repoData = [
   {
       name: 'live2d_ai',
       description: '基于live2d.js实现的动画小人ai，拥有聊天功能，还有图片识别功能，可以嵌入到网页里',
-      stargazers_count: 35,
+      stargazers_count: 36,
       html_url: 'https://github.com/AlpacaBi/live2d_ai',
-      forks: 12,
+      forks: 13,
       language: 'JavaScript',
   },
   {
       name: 'bgk_weixin_bot',
       description: '基于python3的微信聊天机器人，增加了图片识别功能',
-      stargazers_count: 25,
+      stargazers_count: 26,
       html_url: 'https://github.com/AlpacaBi/bgk_weixin_bot',
       forks: 13,
       language: 'Python',
@@ -44,7 +44,7 @@ export const repoData = [
   {
       name: 'alpaca_run',
       description: '一个基于TypeScript+Golang+Vue+Graphql的个人网站',
-      stargazers_count: 23,
+      stargazers_count: 24,
       html_url: 'https://github.com/AlpacaBi/alpaca_run',
       forks: 0,
       language: 'TypeScript',
@@ -52,7 +52,7 @@ export const repoData = [
   {
       name: '30-days-of-react-native-expo',
       description: '30 days of React Native Expo demos',
-      stargazers_count: 14,
+      stargazers_count: 15,
       html_url: 'https://github.com/AlpacaBi/30-days-of-react-native-expo',
       forks: 2,
       language: 'JavaScript',
@@ -68,9 +68,9 @@ export const repoData = [
   {
       name: 'bgk-wechat-cleaner',
       description: '可以检测到微信好友、微信群的违规发言和违规图片，还微信交流良好环境',
-      stargazers_count: 6,
+      stargazers_count: 7,
       html_url: 'https://github.com/AlpacaBi/bgk-wechat-cleaner',
-      forks: 2,
+      forks: 3,
       language: 'Python',
   },
 ];

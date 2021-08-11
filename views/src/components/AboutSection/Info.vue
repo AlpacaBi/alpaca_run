@@ -9,6 +9,12 @@
         </div>
       </el-tooltip>
       <div class="next" @click="nextPage">Next</div>
+      <div class="icp">
+          <div id="beian">
+              <a href="https://beian.miit.gov.cn/" target='_blank'
+                  style="color:white">备案号：粤ICP备17017545号</a>
+          </div>
+      </div>
     </div>
 </template>
 
@@ -84,6 +90,10 @@ export default class Info extends Vue {
     .next{
       display: none;
     }
+    .icp{
+      position: absolute;
+      bottom:20px
+    }
   }
   @media screen and (max-width: 767px){
     .name {
@@ -114,6 +124,9 @@ export default class Info extends Vue {
       bottom: 20px;
       font-size:24px;
       text-decoration: underline;
+    }
+    .icp{
+      display: none
     }
   }
 }
